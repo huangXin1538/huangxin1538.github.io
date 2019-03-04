@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[object方法]]></title>
+    <url>%2F2019%2F02%2F28%2F20190228-1%2F</url>
+    <content type="text"><![CDATA[1. Object.assign(target,source1,source2,…); 合并对象将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。 浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。 只进行值的复制，如果复制的值是个取值函数，那么求值后复制。 可以处理数组，但会把数组看做对象 同值属性被覆盖 123456789const target = &#123; x:0&#125;const source = &#123; x:1, y:0&#125;Object.assign(target,source);//target &#123;x:1,y:0&#125; 2.Object.create(prototype,[propertiesObject]); 使用指定的原型对象及其属性去创建一个新的对象123456789101112var a =&#123; x:0, y:0&#125;;var b = Object.create(a,&#123; z:&#123; writable:true, //是否可以采用 数据运算符 进行赋值 configurable:true, //是否可以修改、删除 value: "newAdd" //值 &#125;&#125;);输出： b = &#123;z:'newAdd'&#125; 3.Object.defineProperties(obj,props); 直接在一个对象上定义新的属性或修改现有属性，并返回该对象 （批量）12345678910111213var obj = &#123;&#125;;Object.defineProperties(obj, &#123; 'property1': &#123; value: true, writable: true &#125;, 'property2': &#123; value: 'Hello', writable: false &#125; // etc. etc.&#125;);console.log(obj) // &#123;property1: true, property2: "Hello"&#125; 4.Object.defineProperty(obj,prop,descriptor); 在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。（单个）obj：必需。目标对象prop：必需。需定义或修改的属性的名字descriptor：必需。目标属性所拥有的特性123456789101112var Object = &#123;&#125;;Object.defineProperty(Object, 'is', &#123; value: 2, configurable: true, // 是否可以删除或者再次修改属性 enumerable: false, //是否可以被枚举 writable: true // 是否可以被重写&#125;); // Object = &#123;is:2&#125;// 注意不能同时设置(writable，value) 和 get，set方法，否则浏览器会报错 // 如果不设置属性特性。configurable、enumerable、writable 都默认为false//Invalid property descriptor. Cannot both specify accessors and a value or writable attribute getter/setter当设置或获取对象的某个属性的值的时候，可以提供getter/setter方法。 getter 是一种获得属性值的方法setter是一种设置属性值的方法。 可在获取值和设置值的时候触发 12345678910111213141516171819var obj = &#123;&#125;;var initValue = 'hello';Object.defineProperty(obj,"newKey",&#123; get:function ()&#123; //当获取值的时候触发的函数 return initValue; &#125;, set:function (value)&#123; //当设置值的时候触发的函数,设置的新值通过参数value拿到 initValue = value; &#125;&#125;);//获取值console.log( obj.newKey ); //hello//设置值obj.newKey = 'change value';console.log( obj.newKey ); //change value 5.Object.keys(); 返回一个由一个给定对象的自身可枚举属性组成的数组,顺序与for…in获取的相同，但是for..i还会魅族其原型链的属性1234let arr = ["a", "b", "c"];console.log(Object.keys(arr));// ['0', '1', '2']/* Object 对象 */let obj = &#123; foo: "bar", baz: 42 &#125;, keys = Object.keys(obj);console.log(keys);// ["foo","baz"] 6.Object.values(); 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。Object.values会过滤属性名为 Symbol 值的属性。1234var an_obj = &#123; 100: 'a', 2: 'b', 7: 'c' &#125;;console.log(Object.values(an_obj)); // ['b', 'c', 'a']var obj = &#123; 0: 'a', 1: 'b', 2: 'c' &#125;;console.log(Object.values(obj)); // ['a', 'b', 'c'] 7.Object.entries(); 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for…in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。12345const obj = &#123; foo: 'bar', baz: 42 &#125;;console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ] const simuArray = &#123; 0: 'a', 1: 'b', 2: 'c' &#125;;console.log(Object.entries(simuArray)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ] 8.hasOwnProperty()判断对象自身属性中是否具有指定的属性。 obj.hasOwnProperty(‘name’) 9.Object.getOwnPropertyDescriptor(obj,prop);返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）.如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。1234var arr = ['name','age'] ;arr.forEach(val =&gt; console.log(Object.getOwnPropertyDescriptor(obj,val)))// &#123;value: "js", writable: true, enumerable: true, configurable: true&#125;// undefined 10. Object.getOwnPropertyDescriptors(obj) 获取一个对象的所有自身属性的描述符。12345var obj = &#123; name : 'js', age : 20&#125;console.log(Object.getOwnPropertyDescriptors(obj)) 11. Object.getOwnPropertyNames(); 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。1234567var obj = &#123; 0: "a", 1: "b", 2: "c"&#125;;Object.defineProperty(obj,'z',&#123; enumerable : false&#125;)console.log(Object.getOwnPropertyNames(obj)) // ["x", "y", "z"] 包含不可枚举属性 。console.log(Object.keys(obj)) // ["x", "y"] 只包含可枚举属性 。 12 Object.getOwnPropertySymbols();返回一个给定对象自身的所有 Symbol 属性的数组。13 isPrototypeOf(); 判断一个对象是否存在一另一个对象的原型链上14 Object.getOwnPropertySymbols(); 返回一个给定对象自身的所有 Symbol 属性的数组。15 Object.is(); 判断两个对象是否相同如果下列任何一项成立，则返回true两个值都是 undefined两个值都是 null两个值都是 true 或者都是 false两个值是由相同个数的字符按照相同的顺序组成的字符串两个值指向同一个对象两个值都是数字并且都是正零 +0都是负零 -0都是 NaN都是除零和 NaN 外的其它同一个数字 123456789101112131415Object.is('foo', 'foo'); // trueObject.is(window, window); // true Object.is('foo', 'bar'); // falseObject.is([], []); // false var test = &#123; a: 1 &#125;;Object.is(test, test); // true Object.is(null, null); // true // 特例Object.is(0, -0); // falseObject.is(-0, -0); // trueObject.is(NaN, 0/0); // true 16 Object.freeze() 冻结一个对象。被冻结的对象 是永远不变的，返回被冻结的对象17 Object.isFrozen() 判断一个对象是否被冻结 .18 Object.preventExtensions() 对象不能再添加新的属性。可修改，删除现有属性1234567891011121314var obj = &#123; name :'lilei', age : 30 , sex : 'male'&#125; obj = Object.preventExtensions(obj);console.log(obj); // &#123;name: "lilei", age: 30, sex: "male"&#125;obj.name = 'haha';console.log(obj) // &#123;name: "haha", age: 30, sex: "male"&#125;delete obj.sex ;console.log(obj); // &#123;name: "haha", age: 30&#125;obj.address = 'china';console.log(obj) // &#123;name: "haha", age: 30&#125; 19 Object.isExtensible() 判断对象是否是可扩展的，Object.preventExtensions，Object.seal 或 Object.freeze 方法都可以标记一个对象为不可扩展（non-extensible）20 Object.seal() 让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性。但 proto ( ) 属性的值也会不能修改。123456789101112131415161718192021222324252627282930313233343536var obj = &#123; prop: function () &#123;&#125;, foo: "bar" &#125;; // 可以添加新的属性,已有属性的值可以修改,可以删除obj.foo = "baz";obj.lumpy = "woof";delete obj.prop; var o = Object.seal(obj); assert(o === obj);assert(Object.isSealed(obj) === true); // 仍然可以修改密封对象上的属性的值.obj.foo = "quux"; // 但你不能把一个数据属性重定义成访问器属性.Object.defineProperty(obj, "foo", &#123; get: function() &#123; return "g"; &#125; &#125;); // 抛出TypeError异常 // 现在,任何属性值以外的修改操作都会失败.obj.quaxxor = "the friendly duck"; // 静默失败,新属性没有成功添加delete obj.foo; // 静默失败,属性没有删除成功 // ...在严格模式中,会抛出TypeError异常function fail() &#123; "use strict"; delete obj.foo; // 抛出TypeError异常 obj.sparky = "arf"; // 抛出TypeError异常&#125;fail(); // 使用Object.defineProperty方法同样会抛出异常Object.defineProperty(obj, "ohai", &#123; value: 17 &#125;); // 抛出TypeError异常Object.defineProperty(obj, "foo", &#123; value: "eit" &#125;); // 成功将原有值改变 21.Object.isSealed() 判断一个对象是否密闭Object状态:1.冻结。永远不会变2.密闭。 a:不可添加新属性 b:已有属性变的不可删除 c:数据的属性不能被重新定义为转换器属性 d:属性值仍然可以修改 e:尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性 f:proto ( ) 属性的值也会不能修改3.不可扩展：对象不能再添加新的属性。可修改，删除现有属性]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[call 和 apply 用法]]></title>
+    <url>%2F2019%2F02%2F26%2F20190226-1%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue首屏加载时间过长优化]]></title>
+    <url>%2F2019%2F02%2F21%2F20190221-1%2F</url>
+    <content type="text"><![CDATA[主要思路：减小首屏加载的js文件体积 1.减少不必要的引用1.看package.json;2.查看打包分析 安装 webpack-bundle-analyzer vue.config.js配置 chainWebpack: (config) =&gt; { //打包分析 config.plugin(‘webpack-bundle-analyzer’) .use(BundleAnalyzerPlugin) .init(Plugin =&gt; new Plugin()); }, run build –report 2.路由懒加载，组件懒加载3.引用转为cdn]]></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[flex兼容]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-12%2F</url>
+    <content type="text"><![CDATA[###旧版本dispaly: box;，过渡版本dispaly: flex box;，以及现在的标准版本display: flex Android2.3 开始就支持旧版本 display:-webkit-box;4.4 开始支持标准版本 display: flex; IOS6.1 开始支持旧版本 display:-webkit-box;7.1 开始支持标准版本display: flex; PCie10开始支持，但是IE10的是-ms形式的。 ### ###写法12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849.flex &#123; display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */ display: -moz-box; /* 老版本语法: Firefox (buggy) */ display: -ms-flexbox; /* 混合版本语法: IE 10 */ display: -webkit-flex; /* 新版本语法: Chrome 21+ */ display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */&#125;.flex-1 &#123; -webkit-flex: 1; /* Chrome */ -ms-flex: 1; /* IE 10 */ flex: 1; /* NEW, Spec - Opera 12.1, Firefox 20+ */ -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */ -moz-box-flex: 1; /* OLD - Firefox 19- */&#125;.flex-v &#123; -webkit-box-orient: vertical; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;&#125;.flex-align-center &#123; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center;&#125;.flex-pack-center &#123; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center;&#125;.flex-pack-justify &#123; -webkit-box-pack: justify; -webkit-justify-content: space-between; -ms-flex-pack: justify; justify-content: space-between;&#125;.flex-pack-around &#123; -webkit-box-pack: center; -webkit-justify-content: space-around; -ms-flex-pack: center; justify-content: space-around;&#125; 兼容性：ios 4+、android 2.3+、winphone8+ ###]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js实现面向对象]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-11%2F</url>
+    <content type="text"><![CDATA[###面向对象：将抽象模型实例化为对象，属性和方法都通过操作对象来获取和实现。123456function Cat(color,name)&#123; this.color:color, this.name:name&#125;var cat1 = new Cat('黄色','大毛'); ###]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[css单位]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-10%2F</url>
+    <content type="text"><![CDATA[###%:百分比cm：厘米mm：毫米px:像素in：英寸 rgb(x,x,x) RGB 值 (比如 rgb(255,0,0))rgb(x%, x%, x%) RGB 百分比值 (比如 rgb(100%,0%,0%)) #rrggbb 十六进制数 (比如 #ff0000) 新属性vw：视窗宽度的百分比（1vw 代表视窗的宽度为 1%）vh：视窗高度的百分比vmin：当前 vw 和 vh 中较小的一个值vmax：当前 vw 和 vh 中较大的一个值 做移动页面开发时，如果使用 vw、wh 设置字体大小（比如 5vw），在竖屏和横屏状态下显示的字体大小是不一样的。由于 vmin 和 vmax 是当前较小的 vw 和 vh 和当前较大的 vw 和 vh。这里就可以用到 vmin 和 vmax。使得文字大小在横竖屏下保持一致。 Android：自 4.4 版起就完美支持（2013年12月）iOS：自 iOS8 版起就完美支持（2014年9月） ###]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[css 动画]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-9%2F</url>
+    <content type="text"><![CDATA[补间动画指控制最开始的状态和最末的状态的动画，中间的状态由浏览器自动帮我们计算生成。 逐帧动画时间轴上定义关键帧，通过连续播放形成动画 实现属性css animationcss transiton]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[promise]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-8%2F</url>
+    <content type="text"><![CDATA[### js实现异步操作的一种方式 三种状态 等待（pending）、已完成（fulfilled）、已拒绝（rejected） Promise的构造函数接收一个函数作为参数，该函数接受两个额外的函数，resolve和reject，这两个函数分别代表将当前Promise置为fulfilled(解决)和rejected(拒绝)两个状态。Promise正是通过这两个状态来控制异步操作的结果 resolve()内部的参数会传递给then(); reject方法参数传给catch(); 当Promise中的函数执行resolve方法后，由之前的pending –&gt; resolved 基础例子：1234567891011121314151617181920212223242526272829303132333435363738var promise = new Promise(function (resolve, reject) &#123; if (success) &#123; //执行成功 resolve(&#123; name:'resolve' &#125;); &#125;else &#123; //执行失败 reject(&#123; name:'err' &#125;); &#125;&#125;)同时监听成功和错误promise.then(function(contents)&#123; //成功 console.log(contents)&#125;,function(err)&#123; //拒绝 console.error(err.message)&#125;)只监听成功promise.then(function(contents)&#123; //成功 console.log(contents)&#125;)只监听错误promise.then(null,function(error)&#123; //拒绝 console.error(err)&#125;)promise的catch方法，相当于只给其传入拒绝处理程序的then()方法。promise.catch(function(err)&#123; console.error(err.message)&#125;) 多个函数实战12345678910111213141516171819function a()&#123; return new Promise(function(resolve,reject)&#123; console.log('a') &#125;)&#125;function b()&#123; return new Promise(function(resolve,reject)&#123; console.log('b') &#125;)&#125;function c()&#123; return new Promise(function(resolve,reject)&#123; console.log('c') &#125;)&#125;a().then(b()).then(c()) Promise.then()回调异步性1234567891011var p1 = new Promise(function(resolve, reject)&#123; resolve('success');&#125;);p1.then(function(val)&#123; console.log(val);&#125;);console.log("which one is called first ?");success后执行 ###]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[前端缓存机制]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-7%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[js安全]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-6%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[css BFC]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-5%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[js模块化]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-4%2F</url>
+    <content type="text"><![CDATA[1.无模块化12&lt;script src="jquery.js"&gt;&lt;/script&gt;&lt;script src="jquery_scroller.js"&gt;&lt;/script&gt; 缺点：1.污染全局作用域 2.依赖关系不明显 2. commonJS规范最初应用于服务端前端webpack也对CommonJS原生支持 每一个文件就是一个模块，内部定义的变量属于这个模块，不会对外暴露，不会污染全局。 核心思想：通过require同步加载所要依赖的其他模块，通过exports 或者module.exports 来导出需要暴露的接口 module代表这个模块，exports代表要暴露的接口，默认顶部有一句代码 exports = module.exports 所以不能直接给exports赋值， 如 number/function等 123456789101112// a.jsvar x = 5;var addX = function (value) &#123; return value + x;&#125;;module.exports.x = x;module.exports.addX = addX;// 引用var a = require('./a.js');console.log(a.x); // 5console.log(a.addX(1)); // 6 优点：commonJS率先在服务端完成模块化，解决了依赖全局变量污染的问题缺点：由于commonJS是同步加载模块，在浏览器端不适用。 3. AMD规范AMD规范则是非同步加载模块，允许指定回调函数.AMD规范的实现：require.jsAMD标准定义了两个API121.require([module],callback)2.define(id,[depends],callback) 即通过define定义模块，require加载模块。且require支持commonJS的模块导出方式、 定义alert模块：123456789101112define(function () &#123; var alertName = function (str) &#123; alert("I am " + str); &#125; var alertAge = function (num) &#123; alert("I am " + num + " years old"); &#125; return &#123; alertName: alertName, alertAge: alertAge &#125;;&#125;); 引入模块1234require(['alert'], function (alert) &#123; alert.alertName('JohnZhu'); alert.alertAge(21);&#125;); 在使用requireJS时候，必须提前加载所有的依赖，然后才能使用 优点:适合在浏览器端异步加载模块，可以并行加载多个模块缺点：提高了开发成本，并且不能按需加载，必须提前加载完所有依赖 4.CMD规范CMD规范是阿里的玉伯提出来的，实现js库为sea.js。 它和requirejs非常类似，即一个js文件就是一个模块，但是CMD的加载方式更加优秀，是通过按需加载的方式，而不是必须在模块开始就加载所有的依赖。如下：123456define(function(require, exports, module) &#123; var $ = require('jquery'); var Spinning = require('./spinning'); exports.doSomething = ... module.exports = ...&#125;) 优点： 浏览器端模块加载，按需加载，依赖就近缺点： 依赖SPM打包，模块的加载逻辑偏重 AMD和CMD区别： 前者对依赖提前执行，后者延迟执行。 前者推崇依赖前置，后者推崇依赖就近，即在需要时候某个模块在require 1234567891011121314151617// AMDdefine(['./a', './b'], function(a, b) &#123; // 依赖必须一开始就写好 a.doSomething() // 此处略去 100 行 b.doSomething() ...&#125;);// CMDdefine(function(require, exports, module) &#123; var a = require('./a') a.doSomething() // 此处略去 100 行 var b = require('./b') // 依赖可以就近书写 b.doSomething() // ... &#125;); 5.ES6模块化之前的模块化都是社区自己实现的，只是得到大家的认可和广泛使用，而ES6是官方推出的真正规范的模块化方案。使用import引入模块，通过export导出模块。目前ES6在浏览器支持性不高，通过babel将import编译为require 123456789101112import store from '../store/index'import &#123;mapState, mapMutations, mapActions&#125; from 'vuex'import axios from '../assets/js/request'import util from '../utils/js/util.js'export default &#123; created () &#123; this.getClassify(); this.RESET_VALUE(); console.log('created' ,new Date().getTime());&#125;`]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[闭包机制]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-3%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue双向绑定原理]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-2%2F</url>
+    <content type="text"></content>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[eventLoop机制]]></title>
+    <url>%2F2019%2F01%2F30%2F20190130-1%2F</url>
+    <content type="text"><![CDATA[1.js为单线程假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？这就意味着，单线程为js核心标准，将一直沿用下去。 web worker : 号称让js成为一门多线程语言所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程本质。 2.事件循环一直在查找新的事件执行，一次执行的循环成为tick，循环里执行的代码称为task 任务分同步和异步js执行时将不同变量存在内存的不同位置：堆（heap）和栈（stack）中区分。堆中一般存变量，stack一般存函数和方法。stack叫做执行栈，方法会依次在这里执行。执行栈事件先进先出，任务队列先进先出。web apis代表异步事件，callback queue事件队列 执行栈执行主线程任务，当有操作dom，ajax交互，定时器 等异步操作时候，任务会移入到callback queue任务队列当主线程执行完毕后，读取callbakc quene队列中的函数，进入主线程执行。不断重复，就是常说的事件循环（eventloop） 3.macro task和 micro task不同的异步任务会分为两类：微任务（micro）和宏任务（macro） 在一个事件循环中，异步事件返回结果后被放到对应的宏任务队列或者微任务队列中去。 宏任务-&gt;这个宏任务中的微任务-&gt;下一个宏任务-&gt;下一个宏任务添加的微任务 当执行栈为空时，主线程会首先查看微任务中的事件，如果微任务不是空执行微任务。如果没有任务，在宏任务中取出最前面的一个事件，把对应的回调加入当前执行栈……… 如此反复，进入循环 macro-task(宏任务) 整体代码 settimeout setinterval setlmmediate 主代码块 &gt; setImmediate &gt; MessageChannel &gt; setTimeout / setInterval micro-task(微任务) process.nextTick &gt; Promise &gt; MutationObserver]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[meta 标签内属性详解]]></title>
+    <url>%2F2018%2F12%2F06%2F20181206-1%2F</url>
+    <content type="text"><![CDATA[1&lt;meta name="参数" content="具体的描述"&gt; meta常用于定义页面的说明，关键字，最后修改日期，和其它的元数据。这些元数据将服务于浏览器（如何布局或重载页面），搜索引擎和其它网络服务。 name 属性A.keywords用于告诉搜索引擎，你网页的关键字。举例： B.description用于告诉搜索引擎，你网站的主要内容。举例： C. viewport(移动端的窗口) width = device-width宽度等于当前设备的宽度 initial-scale = 1.0初始缩放比例，默认为1（倍） minimum-scale = 1.0/maximum-scale = 1.0最小/大缩放比例1（倍） user-scalable = no是否允许用户缩放页面（yes/no） D.robotrobots用来告诉爬虫哪些页面需要索引，哪些页面不需要索引。content的参数有all,none,index,noindex,follow,nofollow。默认是all。举例： 1.none : 搜索引擎将忽略此网页，等价于noindex，nofollow。2.noindex : 搜索引擎不索引此网页。3.nofollow: 搜索引擎不继续通过此网页的链接索引搜索其它的网页。4.all : 搜索引擎将索引此网页与继续通过此网页的链接索引，等价于index，follow。5.index : 搜索引擎索引此网页。6.follow : 搜索引擎继续通过此网页的链接索引搜索其它的网页。E.author用于标注网页作者 F.generator(网页制作软件) G.copyright(版权) H.revisit-after(重访)如果页面不是经常更新，为了减轻搜索引擎爬虫对服务器带来的压力，可以设置一个爬虫的重访时间。如果重访时间过短，爬虫将按它们定义的默认时间来访问 I.rendererrenderer是为双核浏览器准备的，用于指定双核浏览器默认以何种方式渲染页面。比如说360浏览器。 //默认webkit内核 //默认IE兼容模式 //默认IE标准模式 http-equiv属性http-equiv顾名思义，相当于http的文件头作用，它可以向浏览器传回一些有用的信息，以帮助正确和精确地显示网页内容，与之对应的属性值为content，content中的内容其实就是各个参数的变量值。 A.Expires(期限)说明：可以用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输 注意：必须使用GMT的时间格式。 B.Pragma(cache模式)说明：禁止浏览器从本地计算机的缓存中访问页面内容。 注意：这样设定，访问者将无法脱机浏览。 C.Refresh(刷新)说明：自动刷新并指向新页面。1&lt;meta http-equiv=&quot;Refresh&quot; content=&quot;2; URL = http://www.baidu.com&quot;&gt; (注意后面的引号，分别在秒数的前面和网址的后面) 注意：其中的2是指停留2秒钟后自动刷新到URL网址 D.Set-Cookie(cookie设定)说明：如果网页过期，那么存盘的cookie将被删除。用法：注意：必须使用GMT的时间格式 E.Window-target(显示窗口的设定)说明：强制页面在当前窗口以独立页面显示。用法：注意：用来防止别人在框架里调用自己的页面 F.content-Type(显示字符集的设定)说明：设定页面使用的字符集。用法：注意：HTML5中使用 来设定 meta标签的charset的信息参数如GB2312时，代表说明网站是采用的编码是简体中文； meta标签的charset的信息参数如BIG5时，代表说明网站是采用的编码是繁体中文； meta标签的charset的信息参数如iso-2022-jp时，代表说明网站是采用的编码是日文； meta标签的charset的信息参数如ks_c_5601时，代表说明网站是采用的编码是韩文； meta标签的charset的信息参数如ISO-8859-1时，代表说明网站是采用的编码是英文； meta标签的charset的信息参数如UTF-8时，代表世界通用的语言编码； G.content-Language（显示语言的设定）用法： H.Cache-Control指定请求和响应遵循的缓存机制。Cache-Control指定请求和响应遵循的缓存机制。在请求消息或响应消息中设置Cache-Control并不会修改另一个消息处理过程中的缓存处理过程。请求时的缓存指令包括no-cache、no-store、max-age、max-stale、min-fresh、only-if-cached，响应消息中的指令包括public、private、no-cache、no-store、no-transform、must-revalidate、proxy-revalidate、max-age。各个消息中的指令含义如下 Public指示响应可被任何缓存区缓存 Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效 no-cache指示请求或响应消息不能缓存 no-store用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。 max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应 min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应 max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2018%2F11%2F28%2F20181128-1%2F</url>
+    <content type="text"><![CDATA[&lt;&lt;&lt;&lt;&lt;&lt;&lt; .minetitle: html5新特性date: 2018-11-28 17:03:48 categories: html背景html5新特性盘点，面试常见 内容一.更多的语义标签语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。 &lt;section&gt;&lt;/section&gt; 定义文档中的主体部分的节、段 &lt;article&gt;&lt;/article&gt; 一个特殊的section标签，比section有更明确的语义。定义来自外部的一个独立的、完整的内容块，例如什么论坛的文章，博客的文本 &lt;aside&gt;&lt;/aside&gt; 页面中非正文的内容，独立于其他模块。例如广告、成组的链接、侧边栏 &lt;header&gt;&lt;/header&gt; 定义文档、页面的页眉。通常是一些引导和导航信息，不局限于整个页面头部，也可以用在内容里 &lt;footer&gt;&lt;/footer&gt; 定义了文档、页面的页脚，和header类似 &lt;nav&gt;&lt;/nav&gt; 定义了一个链接组组成的导航部分，其中的链接可以链接到其他网页或者当前页面的其他部分 &lt;hgroup&gt;&lt;/hgroup&gt; 用于对网页或区段(section)的标题元素(h1~h6) &lt;details&gt;&lt;/details&gt; 定义元素的细节，用户可以点击查看或者隐藏 &lt;summary&gt;&lt;/summary&gt; （译：摘要，一览） 和details连用，用来包含details的标题 &lt;canvas&gt;&lt;/canvas&gt; 画布 &lt;video&gt;&lt;/video&gt; &lt;audio&gt;&lt;/audio&gt; &lt;embed&gt;&lt;/embed&gt; （译：嵌入）定义嵌入网页的内容。比如插件。 &lt;source&gt;&lt;/source&gt; 该标签为媒介元素(比如video、audio)定义媒介元素。 &lt;datalist id=&#39;dl&#39;&gt;&lt;/datalist&gt; 定义可选数据的列表，与input配合使用( &lt;input list=&#39;dl&#39;&gt; )可制作输入值的下拉列表。 &lt;mark&gt;&lt;/mark&gt; 在视觉上向用户展现出那些想要突出的文字。比如搜索结果中向用户高亮显示搜索关键词 &lt;progress&gt;&lt;/progress&gt; 进度条，运行中的进度。 &lt;output&gt;&lt;/output&gt; 定义不同类型的输出，样式与span相同 &lt;keygen&gt;&lt;/keygen&gt; 定义加密内容 &lt;command&gt;&lt;/command&gt; 定义命令行为 &lt;figure&gt;&lt;/figure&gt; 独立于文章的内容，如果删除，对内容无影响 &lt;time&gt;&lt;/time&gt; 定义时间和日期 二.本地存储（localStorage和sessionStorage） localStorage存储大小：5M(cookie为4K)兼容：ie8+ /Chrome 5+特点：永久存储，不会被爬虫爬到，值类型限定为string，只在本地生效读:localStorage.getItem(‘name’)localStorage.namelocalStorage.key(‘name’) //通过key值获取删：localStorage.removeItem(‘name’)检测是否存在某个变量：localStorage.hasOwnProperty(‘name’) //hasOwnProperty为对象的方法，可以用来检测一个对象是否含有特定的自身属性 sessionStorage与localStorage不同之处：1.临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据2.同源策略限制。若想在不同页面之间对同一个sessionStorage进行操作，这些页面必须在同一协议、同一主机名和同一端口下。(IE 8和9存储数据仅基于同一主机名，忽略协议（HTTP和HTTPS）和端口号的要求)3.sessionStorage操作限制在单个标签页中，在此标签页进行同源页面访问都可以共享sessionStorage数据 三.离线web应用页面缓存指的还是有网络状态下，而离线web应用指的是在没有网络状态可以运行应用 检测是否支持： =======title: ‘html5新特性’date: 2018-11-28 17:03:48 categories: html背景html5新特性盘点，面试常见 内容一.更多的语义标签语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。 &lt;section&gt;&lt;/section&gt; 定义文档中的主体部分的节、段 &lt;article&gt;&lt;/article&gt; 一个特殊的section标签，比section有更明确的语义。定义来自外部的一个独立的、完整的内容块，例如什么论坛的文章，博客的文本 &lt;aside&gt;&lt;/aside&gt; 页面中非正文的内容，独立于其他模块。例如广告、成组的链接、侧边栏 &lt;header&gt;&lt;/header&gt; 定义文档、页面的页眉。通常是一些引导和导航信息，不局限于整个页面头部，也可以用在内容里 &lt;footer&gt;&lt;/footer&gt; 定义了文档、页面的页脚，和header类似 &lt;nav&gt;&lt;/nav&gt; 定义了一个链接组组成的导航部分，其中的链接可以链接到其他网页或者当前页面的其他部分 &lt;hgroup&gt;&lt;/hgroup&gt; 用于对网页或区段(section)的标题元素(h1~h6) &lt;details&gt;&lt;/details&gt; 定义元素的细节，用户可以点击查看或者隐藏 &lt;summary&gt;&lt;/summary&gt; （译：摘要，一览） 和details连用，用来包含details的标题 &lt;canvas&gt;&lt;/canvas&gt; 画布 &lt;video&gt;&lt;/video&gt; &lt;audio&gt;&lt;/audio&gt; &lt;embed&gt;&lt;/embed&gt; （译：嵌入）定义嵌入网页的内容。比如插件。 &lt;source&gt;&lt;/source&gt; 该标签为媒介元素(比如video、audio)定义媒介元素。 &lt;datalist id=&#39;dl&#39;&gt;&lt;/datalist&gt; 定义可选数据的列表，与input配合使用( &lt;input list=&#39;dl&#39;&gt; )可制作输入值的下拉列表。 &lt;mark&gt;&lt;/mark&gt; 在视觉上向用户展现出那些想要突出的文字。比如搜索结果中向用户高亮显示搜索关键词 &lt;progress&gt;&lt;/progress&gt; 进度条，运行中的进度。 &lt;output&gt;&lt;/output&gt; 定义不同类型的输出，样式与span相同 &lt;keygen&gt;&lt;/keygen&gt; 定义加密内容 &lt;command&gt;&lt;/command&gt; 定义命令行为 &lt;figure&gt;&lt;/figure&gt; 独立于文章的内容，如果删除，对内容无影响 &lt;time&gt;&lt;/time&gt; 定义时间和日期 二.本地存储（localStorage和sessionStorage） localStorage存储大小：5M(cookie为4K)兼容：ie8+ /Chrome 5+特点：永久存储，不会被爬虫爬到，值类型限定为string，只在本地生效读:localStorage.getItem(‘name’)localStorage.namelocalStorage.key(‘name’) //通过key值获取删：localStorage.removeItem(‘name’)检测是否存在某个变量：localStorage.hasOwnProperty(‘name’) //hasOwnProperty为对象的方法，可以用来检测一个对象是否含有特定的自身属性 sessionStorage与localStorage不同之处：1.临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据2.同源策略限制。若想在不同页面之间对同一个sessionStorage进行操作，这些页面必须在同一协议、同一主机名和同一端口下。(IE 8和9存储数据仅基于同一主机名，忽略协议（HTTP和HTTPS）和端口号的要求)3.sessionStorage操作限制在单个标签页中，在此标签页进行同源页面访问都可以共享sessionStorage数据 三.离线web应用页面缓存指的还是有网络状态下，而离线web应用指的是在没有网络状态可以运行应用 检测是否支持： .theirs]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[js非构造函数继承（持续更新）]]></title>
+    <url>%2F2018%2F10%2F23%2F20181023-1%2F</url>
+    <content type="text"><![CDATA[背景昨天整理了一下js含构造函数的对象实现继承的方式，今天整理下非构造函数的继承 方法1.object方法json格式的发明人Douglas Crockford，提出了一个object()函数123456789101112131415161718function object(o) &#123; function F() &#123;&#125; F.prototype = o; return new F();&#125;实例var Chinese = &#123; nation:'中国'&#125;;var Doctor = &#123; career:'医生'&#125;Doctor = object(Chinese);console.log(Doctor.nation) //中国 2.浅拷贝把父对象的属性拷贝给子对象，实现继承 123456789101112function extendCopy(p) &#123; var c = &#123;&#125;; for (var i in p) &#123; c[i] = p[i]; &#125; return c;&#125;结果var Doctor = extendCopy(Chinese);Doctor.career = '医生';alert(Doctor.nation); // 中国 这样的做法存在一个问题，如果父元素的属性中存在数组或者对象，拷贝过来的只是一个内存地址指向 123456789如果给chinese对象添加一条属性Chinese.birthPlaces = ['北京','上海','香港'];var Doctor = extendCopy(Chinese);Doctor.birthPlace.push('厦门');console.log(chinese.birthPlace) //['北京','上海','香港','厦门'] 如果修改Doctor.birthPlace,内存地址指向的数组被修改,chinese中的birthPlace也被修改，显然不符合预期 3.深拷贝递归调用浅拷贝，即可实现深拷贝1234567891011121314151617function deepCopy(p, c) &#123; var c = c || &#123;&#125;; for (var i in p) &#123; if (typeof p[i] === 'object') &#123; c[i] = (p[i].constructor === Array) ? [] : &#123;&#125;; deepCopy(p[i], c[i]); &#125; else &#123; c[i] = p[i]; &#125; &#125; return c;&#125;var Doctor = deepCopy(Chinese);Chinese.birthPlaces = ['北京','上海','香港'];Doctor.birthPlaces.push('厦门');alert(Doctor.birthPlaces); //北京, 上海, 香港, 厦门alert(Chinese.birthPlaces); //北京, 上海, 香港 深拷贝后，birthPlace属性在doctor中就是独立存在的一个属性，而不是一个内存指向了，所以对doctor的任何操作都不会对chinese有任何影响]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js构造函数的继承（持续更新）]]></title>
+    <url>%2F2018%2F10%2F22%2F20181022-1%2F</url>
+    <content type="text"><![CDATA[背景最近复习js基本原理，毕竟什么框架都是建立在js的基础上的，js精通，框架又有何难。趁着有时间整理一下js实现继承的方式。 具体方式1.构造函数绑定最简单，使用call和apply，将父对象的构造函数绑定到子对象身上 1234567891011function Animal()&#123; this.species = "动物";&#125;function cat(name,color)&#123; Animal.call(this,arguments); this.name = name; this.color = color;&#125;var cat1 = new cat('大毛','红色');console.log(cat1.species) 2.prototype模式将cat的prototype指向Animal实例，那么所有的cat对象都拥有animal的属性，任何一个prototype对象都有一个constructor属性，指向它的构造函数。如果没有”cat.prototype = new Animal();”这一行，Cat.prototype.constructor是指向cat的；加了这一行以后，cat.prototype.constructor指向Animal。 每一个实例也有一个constructor属性，默认调用prototype对象的constructor属性。在运行”Cat.prototype = new Animal();”这一行之后，cat1.constructor也指向Animal！cat实例是由构造函数cat生成的，为了保证继承链的稳定，手动纠正，将constructor指回cat123456789101112131415161718function Animal()&#123; this.species = "动物";&#125;function cat(name,color)&#123; this.name = name; this.color = color;&#125;cat.prototype = new Animal();cat.prototype.constructor = cat;var cat1 = new cat("大毛","黄色");alert(cat1.species); // 动物如果没有将constructor手动纠正，那么cat1.prototype.constructor = Animal;纠正后cat1.prototype.constructor = cat; 3.利用空对象做中介1234var F = function()&#123;&#125;;F.prototype = Animal.prototype;cat.prototype = new F();cat.prototype.constructor = Cat; F是空对象，所以几乎不占内存。这时，修改cat的prototype对象，就不会影响到Animal的prototype对象。 将上述操作进行封装12345678910function extend(Child, Parent) &#123; var F = function()&#123;&#125;; F.prototype = Parent.prototype; Child.prototype = new F(); Child.prototype.constructor = Child;&#125;使用extend(cat,animal);cat继承animal属性 4.拷贝继承原理为，将父对象所有属性拷贝进字对象实现继承。12345678function extend2(child,parent)&#123; var p = parent.prototype; var c = child.prototype; for (var i in p) &#123; c[i] = p[i]; &#125;&#125;extend2(cat, animal);]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js中五种检测数据类型方法]]></title>
+    <url>%2F2018%2F10%2F19%2F20181019-1%2F</url>
+    <content type="text"><![CDATA[背景最近公司项目不多，静下心来整理一些东西（不加班的feel倍儿爽）。js判断数据类型算是很常用的代码了，不管是项目中还是面试，必不可少啊，值得一记。 方法1.typeOftypeOf 为一个一元运算符，放在一个运算数之前，运算数可以是任何类型。返回结果为一个字符串，该字符串对应运算数的数据类型。 用法：typeOf + 运算数 或 typeOf (运算数) 结果展示：12345678910typeof Symbol(); // symbol 有效，symbol为es6中第七种数据类型typeof ''; // string 有效typeof 1; // number 有效typeof true; //boolean 有效typeof undefined; //undefined 有效typeof new Function(); // function 有效typeof null; //object 无效typeof [] ; //object 无效typeof new Date(); //object 无效typeof new RegExp(); //object 无效 注意：typeof null 的问题不同的对象在底层都表示为二进制，在 JavaScript 中二进制前三位都为 0 的话会被判断为 object 类型， null 的二进制表示是全 0，自然前三位也是 0，所以执行 typeof 时会返回“ object ”,typeOf对null束手无策。 typeOf [] 的问题JS中因为数组也是属于对象的，所以判断是不是数组，typeOf表示：不好办啊 同理，日期类型Date()和正则表达式RegExp() 也是属于对象,所以Date()/RegExp()/[]/null 不能用typeOf来检测 2.instanceof用法： object instanceof constructor instanceof 同为一元运算符，用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性 看起来比较绕，上例子12var a = new Array();a instanceof Array; instanceof 可以检测 某个对象是否为数组、日期、regexp() 类型 注意：因为undefined 和null 类型，访问不到内部，所以不能用instanceof判断 3.constructorconstructor作用和instanceof非常相似。但constructor检测 Object与instanceof不一样，还可以处理基本数据类型的检测。 12345678var a = 'abc';a.constructor===String;//truea.constructor===Array;//falsea.constructor===RegExp;//false(1).constructor===Number;//truevar reg = /[0-9]/;reg.constructor===RegExp;//truereg.constructor===Object;//false 注意：1.constructor 不能用于判断null和undefined （不存在constructor）2.如果object被重新覆盖，检测结果就会不准确 4.严格运算符 ===只能用于判断null 和 undefined 123var a = nulltypeof a // "object"a === null // true 5.Object.prototype.toString.call()这个方法就比较花里胡哨了，在以前的项目中也基本没用过这个方式。 toString方法，在Object原型上的返回，是数据的格式。因为不同类型的toString方法，都被重写。所以obj.toString和Object.prototype.toString.call(obj)的结果不同。 优点：可以判断所有类型缺点：得到的结果为’[object String]’类型的字符串，需要处理一下格式。 12345678910console.log(Object.prototype.toString.call("jerry"));//[object String]console.log(Object.prototype.toString.call(12)); //[object Number]console.log(Object.prototype.toString.call(true)); //[object Boolean]console.log(Object.prototype.toString.call(undefined));//[object Undefined]console.log(Object.prototype.toString.call(null)); //[object Null]console.log(Object.prototype.toString.call(&#123;name: "jerry"&#125;));//[object Object]console.log(Object.prototype.toString.call(function()&#123;&#125;)); //[object Function]console.log(Object.prototype.toString.call([])); //[object Array]console.log(Object.prototype.toString.call(new Date)); //[object Date]console.log(Object.prototype.toString.call(/\d/)); //[object RegExp] 总结综上，可以得出结论 Symbol、string、number、boolean、function、undefined 使用 typeOf() null、[]、obj、Date()、RegExp() 使用instanceof 或者所有的类型检测都用Object.prototype.toString.call(),更有逼格。 即可做到正确检测。就酱。]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git生成公钥]]></title>
+    <url>%2F2018%2F10%2F17%2F20181017-1%2F</url>
+    <content type="text"><![CDATA[背景在coding上部署hexo博客过程中产生git生成公钥的需求，然后搜索用法，发现搜索到好多垃圾信息，真的是浪费时间，特此记录。 获取方式任意文件夹，右键菜单打开git Bash（在安装了git的情况下），输入命令 1ssh-keygen -t rsa -C "example@163.com" 邮箱自定 一路回车（应该是3下），最后提示，the key’s randomart image is，下边一个字符组成的正方形，说明公钥已经生成了。打开 文件目录C:\Users\你的用户名，发现有两个文件id_rsa.pub和id_rsa，将id_rsa.pub拖入编辑器（本人用vscode，可以打开），是一串ssh-rsa开头的字符。这个就是字符的公钥了。]]></content>
+      <tags>
+        <tag>git用法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[微信小程序按钮去除边框]]></title>
+    <url>%2F2018%2F10%2F16%2F20181016-1%2F</url>
+    <content type="text"><![CDATA[背景前阵子，入手微信小程序的开发，就发现，相比于vue简单很多。api文档简洁明了，基本上人家文档上写的就能直接用，文档上没写的，80%就没法实现，省了不少调研的工作。记录一下开发中碰到的一些不容易注意到的地方，仅供参考。 出现的问题小程序自带button标签，默认情况下，是自带边框的。项目中需要按钮自定义边框样式或者没有边框的时候，就发现12345button&#123; border:none; outline:none; border:0;&#125; 这三种方式，都不行，哇，就很难受 解决方案后来研究发现，button的标签，样式是定义在::after伪元素上的（官方压根没提，或者是我没看到吧）12345button::after&#123; border:none; outline:none; border:0;&#125; 这样就搞定了虽然这个问题也不难,但是了解一下还是能节省点开发的时间的，就酱]]></content>
+      <tags>
+        <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[开博大吉]]></title>
+    <url>%2F2018%2F09%2F26%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[新博开张，大吉大利！Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>Others</category>
+      </categories>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+</search>

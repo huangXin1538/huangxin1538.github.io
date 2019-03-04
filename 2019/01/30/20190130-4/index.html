@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>js模块化 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="1.无模块化12&amp;lt;script src=&quot;jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;jquery_scroller.js&quot;&amp;gt;&amp;lt;/script&amp;gt; 缺点：1.污染全局作用域  2.依赖关系不明显 2. commonJS规范最初应用于服务端前端webpack也对CommonJS原生支持 每一个文件就是一个模块，内部定义的变量属于这个">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js模块化">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/01/30/20190130-4/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="1.无模块化12&amp;lt;script src=&quot;jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;jquery_scroller.js&quot;&amp;gt;&amp;lt;/script&amp;gt; 缺点：1.污染全局作用域  2.依赖关系不明显 2. commonJS规范最初应用于服务端前端webpack也对CommonJS原生支持 每一个文件就是一个模块，内部定义的变量属于这个">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-04T01:55:05.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js模块化">
+<meta name="twitter:description" content="1.无模块化12&amp;lt;script src=&quot;jquery.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;jquery_scroller.js&quot;&amp;gt;&amp;lt;/script&amp;gt; 缺点：1.污染全局作用域  2.依赖关系不明显 2. commonJS规范最初应用于服务端前端webpack也对CommonJS原生支持 每一个文件就是一个模块，内部定义的变量属于这个">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js模块化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js模块化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-30T09:49:22.000Z" itemprop="datePublished" class="page-time">
+  2019-01-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-无模块化"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.无模块化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-commonJS规范"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. commonJS规范</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-AMD规范"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. AMD规范</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-CMD规范"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.CMD规范</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-ES6模块化"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.ES6模块化</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-20190130-4" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js模块化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-30 17:49:22" datetime="2019-01-30T09:49:22.000Z" itemprop="datePublished">2019-01-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1-无模块化"><a href="#1-无模块化" class="headerlink" title="1.无模块化"></a>1.无模块化</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"jquery.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"jquery_scroller.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>缺点：1.污染全局作用域  2.依赖关系不明显</p>
+<h2 id="2-commonJS规范"><a href="#2-commonJS规范" class="headerlink" title="2. commonJS规范"></a>2. commonJS规范</h2><p>最初应用于服务端<br>前端webpack也对CommonJS原生支持</p>
+<p>每一个文件就是一个模块，内部定义的变量属于这个模块，不会对外暴露，不会污染全局。</p>
+<p>核心思想：通过require同步加载所要依赖的其他模块，通过exports 或者module.exports 来导出需要暴露的接口</p>
+<p>module代表这个模块，exports代表要暴露的接口，默认顶部有一句代码 exports = module.exports</p>
+<p>所以不能直接给exports赋值， 如 number/function等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> addX = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value + x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports.x = x;</span><br><span class="line"><span class="built_in">module</span>.exports.addX = addX;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.x); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(a.addX(<span class="number">1</span>)); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>优点：commonJS率先在服务端完成模块化，解决了依赖全局变量污染的问题<br>缺点：由于commonJS是同步加载模块，在浏览器端不适用。</p>
+<h2 id="3-AMD规范"><a href="#3-AMD规范" class="headerlink" title="3. AMD规范"></a>3. AMD规范</h2><p>AMD规范则是非同步加载模块，允许指定回调函数.AMD规范的实现：require.js<br>AMD标准定义了两个API<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">require</span>([<span class="built_in">module</span>],callback)</span><br><span class="line"><span class="number">2.</span>define(id,[depends],callback)</span><br></pre></td></tr></table></figure></p>
+<p>即通过define定义模块，require加载模块。且require支持commonJS的模块导出方式、</p>
+<p>定义alert模块：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> alertName = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">"I am "</span> + str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> alertAge = <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">"I am "</span> + num + <span class="string">" years old"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      alertName: alertName,</span><br><span class="line">      alertAge: alertAge</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>引入模块<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'alert'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">alert</span>) </span>&#123;</span><br><span class="line">  alert.alertName(<span class="string">'JohnZhu'</span>);</span><br><span class="line">  alert.alertAge(<span class="number">21</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在使用requireJS时候，必须提前加载所有的依赖，然后才能使用</p>
+<p>优点:适合在浏览器端异步加载模块，可以并行加载多个模块<br>缺点：提高了开发成本，并且不能按需加载，必须提前加载完所有依赖</p>
+<h2 id="4-CMD规范"><a href="#4-CMD规范" class="headerlink" title="4.CMD规范"></a>4.CMD规范</h2><p>CMD规范是阿里的玉伯提出来的，实现js库为sea.js。 它和requirejs非常类似，即一个js文件就是一个模块，但是CMD的加载方式更加优秀，是通过按需加载的方式，而不是必须在模块开始就加载所有的依赖。如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</span><br><span class="line">  <span class="keyword">var</span> Spinning = <span class="built_in">require</span>(<span class="string">'./spinning'</span>);</span><br><span class="line">  exports.doSomething = ...</span><br><span class="line">  <span class="built_in">module</span>.exports = ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>优点： 浏览器端模块加载，按需加载，依赖就近<br>缺点： 依赖SPM打包，模块的加载逻辑偏重</p>
+<p>AMD和CMD区别：<br>  前者对依赖提前执行，后者延迟执行。<br>  前者推崇依赖前置，后者推崇依赖就近，即在需要时候某个模块在require</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AMD</span></span><br><span class="line">define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;  <span class="comment">// 依赖必须一开始就写好  </span></span><br><span class="line">   a.doSomething()    </span><br><span class="line">   <span class="comment">// 此处略去 100 行    </span></span><br><span class="line">   b.doSomething()    </span><br><span class="line">   ...</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// CMD</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>)   </span><br><span class="line">   a.doSomething()   </span><br><span class="line">   <span class="comment">// 此处略去 100 行   </span></span><br><span class="line">   <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>) </span><br><span class="line">   <span class="comment">// 依赖可以就近书写   </span></span><br><span class="line">   b.doSomething()</span><br><span class="line">   <span class="comment">// ... </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="5-ES6模块化"><a href="#5-ES6模块化" class="headerlink" title="5.ES6模块化"></a>5.ES6模块化</h2><p>之前的模块化都是社区自己实现的，只是得到大家的认可和广泛使用，而ES6是官方推出的真正规范的模块化方案。<br>使用import引入模块，通过export导出模块。<br>目前ES6在浏览器支持性不高，通过babel将import编译为require</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'../store/index'</span></span><br><span class="line"><span class="keyword">import</span> &#123;mapState, mapMutations, mapActions&#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'../assets/js/request'</span></span><br><span class="line"><span class="keyword">import</span> util <span class="keyword">from</span> <span class="string">'../utils/js/util.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  created () &#123;</span><br><span class="line">  <span class="keyword">this</span>.getClassify(); </span><br><span class="line">  <span class="keyword">this</span>.RESET_VALUE();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'created'</span> ,<span class="keyword">new</span> <span class="built_in">Date</span>().getTime());</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-04T01:55:05.062Z" itemprop="dateUpdated">2019-03-04 09:55:05</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/01/30/20190130-4/&title=《js模块化》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/01/30/20190130-4/&title=《js模块化》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/01/30/20190130-4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js模块化》 — 希染&url=http://huangXin1538.github.io/2019/01/30/20190130-4/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/01/30/20190130-4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/30/20190130-5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">css BFC</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/30/20190130-3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">闭包机制</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>footer.license</span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/01/30/20190130-4/&title=《js模块化》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/01/30/20190130-4/&title=《js模块化》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/01/30/20190130-4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js模块化》 — 希染&url=http://huangXin1538.github.io/2019/01/30/20190130-4/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/01/30/20190130-4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACN0lEQVR42u3a0WrDMAxG4b7/S2cwdlHI4p5fSscqH1+VNnH8pSAsyY8HHsf3eP58/ub86/P3V3OuZ755yJAh42MZx3KcF8pnI0jygtZ3yZAhYx9GLcjWAnH/9cmQIUPG1SI61/NFy5AhQ8b7Am663VxfL0OGDBm1JPZ8M7l+fW8nWMuQIWMfRq0x8Def397fkCFDxr9nHOGozUCaB7X1/MwgQ4aM0YyrAMcfnx6zuKud8CB5rQwZMkYwSELYKcZ1CnPBQTEZMmSMZtSmI0X89baPbBCLr16GDBnjGLVCGNmudcpqZLZfcnEZMmQMZaTNAB6CSfPyrntlyJAxm5HeVgOnuWdavJMhQ8YOjH4ejB7W2OoFO1wZMmSMY6QNy7TQ3y/DBc0GGTJkDGWQrWGtb8iPSvBfL/EyZMjYhtE5ilFrKpAWJgr3MmTI2J7Bj0rwzVzacgi2hjJkyBjN4AExCIXhsvh28DLgypAhYxxjjeENg7SU1kmML58oQ4aM0QwyRZxYgtCZvo74MIcMGTJGMEhKWVsQ2SDycPziH5AhQ8YGjFrRPw3QtWMWqJwnQ4aM0Qxe6uLluVozMk1uZciQsQ/jCEd6kCtNVglPhgwZuzH44CW2Vp0PtDZlyJCxJ6MTZPshmwfcFzPIkCFjA0YtaPJSfucYhwwZMmRwRlrQ75T+09KeDBkyZKTNy/e1EF4cDpMhQ8ZoRuegAy+opQ2GoMwnQ4aM0YwbEsj2A/jraz1LhgwZn8f4At6yVuQCgitMAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

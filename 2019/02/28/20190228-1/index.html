@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>object方法 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="1. Object.assign(target,source1,source2,…); 合并对象将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。 浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。 只进行值的复制，如果复制的值是个取值函数，那么求值后复制。 可以处理数组，但会把数组看做对象 同值属性被覆盖 123456789const targe">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="object方法">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/02/28/20190228-1/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="1. Object.assign(target,source1,source2,…); 合并对象将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。 浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。 只进行值的复制，如果复制的值是个取值函数，那么求值后复制。 可以处理数组，但会把数组看做对象 同值属性被覆盖 123456789const targe">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-04T01:55:42.493Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="object方法">
+<meta name="twitter:description" content="1. Object.assign(target,source1,source2,…); 合并对象将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。 浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。 只进行值的复制，如果复制的值是个取值函数，那么求值后复制。 可以处理数组，但会把数组看做对象 同值属性被覆盖 123456789const targe">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">object方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">object方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-28T04:00:07.000Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Object-assign-target-source1-source2-…-合并对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Object.assign(target,source1,source2,…); 合并对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Object-create-prototype-propertiesObject-使用指定的原型对象及其属性去创建一个新的对象"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.Object.create(prototype,[propertiesObject]); 使用指定的原型对象及其属性去创建一个新的对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Object-defineProperties-obj-props-直接在一个对象上定义新的属性或修改现有属性，并返回该对象-（批量）"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.Object.defineProperties(obj,props); 直接在一个对象上定义新的属性或修改现有属性，并返回该对象 （批量）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Object-defineProperty-obj-prop-descriptor-在一个对象上定义一个新属性，或者修改一个对象的现有属性，-并返回这个对象。（单个）"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.Object.defineProperty(obj,prop,descriptor); 在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。（单个）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Object-keys-返回一个由一个给定对象的自身可枚举属性组成的数组-顺序与for…in获取的相同，但是for-i还会魅族其原型链的属性"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.Object.keys(); 返回一个由一个给定对象的自身可枚举属性组成的数组,顺序与for…in获取的相同，但是for..i还会魅族其原型链的属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Object-values-方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同-区别在于-for-in-循环枚举原型链中的属性-。Object-values会过滤属性名为-Symbol-值的属性。"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.Object.values(); 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。Object.values会过滤属性名为 Symbol 值的属性。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-Object-entries-返回一个给定对象自身可枚举属性的键值对数组，其排列与使用-for…in-循环遍历该对象时返回的顺序一致（区别在于-for-in-循环也枚举原型链中的属性）。"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.Object.entries(); 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for…in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-hasOwnProperty"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.hasOwnProperty()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-Object-getOwnPropertyDescriptor-obj-prop-返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）-如果指定的属性存在于对象上，则返回其属性描述符对象（property-descriptor），否则返回-undefined。"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.Object.getOwnPropertyDescriptor(obj,prop);返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）.如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-Object-getOwnPropertyDescriptors-obj-获取一个对象的所有自身属性的描述符。"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.  Object.getOwnPropertyDescriptors(obj)  获取一个对象的所有自身属性的描述符。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11-Object-getOwnPropertyNames-返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. Object.getOwnPropertyNames(); 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。"><span class="post-toc-number">12.</span> <span class="post-toc-text">12 Object.getOwnPropertySymbols();返回一个给定对象自身的所有 Symbol 属性的数组。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13-isPrototypeOf-判断一个对象是否存在一另一个对象的原型链上"><span class="post-toc-number">13.</span> <span class="post-toc-text">13 isPrototypeOf(); 判断一个对象是否存在一另一个对象的原型链上</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。"><span class="post-toc-number">14.</span> <span class="post-toc-text">14 Object.getOwnPropertySymbols(); 返回一个给定对象自身的所有 Symbol 属性的数组。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#15-Object-is-判断两个对象是否相同"><span class="post-toc-number">15.</span> <span class="post-toc-text">15 Object.is(); 判断两个对象是否相同</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#16-Object-freeze-冻结一个对象。被冻结的对象-是永远不变的，返回被冻结的对象"><span class="post-toc-number">16.</span> <span class="post-toc-text">16 Object.freeze() 冻结一个对象。被冻结的对象 是永远不变的，返回被冻结的对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#17-Object-isFrozen-判断一个对象是否被冻结"><span class="post-toc-number">17.</span> <span class="post-toc-text">17 Object.isFrozen() 判断一个对象是否被冻结 .</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#18-Object-preventExtensions-对象不能再添加新的属性。可修改，删除现有属性"><span class="post-toc-number">18.</span> <span class="post-toc-text">18 Object.preventExtensions()  对象不能再添加新的属性。可修改，删除现有属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#19-Object-isExtensible-判断对象是否是可扩展的，Object-preventExtensions，Object-seal-或-Object-freeze-方法都可以标记一个对象为不可扩展（non-extensible）"><span class="post-toc-number">19.</span> <span class="post-toc-text">19 Object.isExtensible() 判断对象是否是可扩展的，Object.preventExtensions，Object.seal 或 Object.freeze 方法都可以标记一个对象为不可扩展（non-extensible）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#20-Object-seal-让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError-异常-不会影响从原型链上继承的属性。但-proto-属性的值也会不能修改。"><span class="post-toc-number">20.</span> <span class="post-toc-text">20 Object.seal() 让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性。但 proto (  ) 属性的值也会不能修改。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#21-Object-isSealed-判断一个对象是否密闭"><span class="post-toc-number">21.</span> <span class="post-toc-text">21.Object.isSealed() 判断一个对象是否密闭</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object状态"><span class="post-toc-number">22.</span> <span class="post-toc-text">Object状态:</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-20190228-1" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">object方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-28 12:00:07" datetime="2019-02-28T04:00:07.000Z" itemprop="datePublished">2019-02-28</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1-Object-assign-target-source1-source2-…-合并对象"><a href="#1-Object-assign-target-source1-source2-…-合并对象" class="headerlink" title="1. Object.assign(target,source1,source2,…); 合并对象"></a>1. Object.assign(target,source1,source2,…); 合并对象</h2><p>将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。</p>
+<p>浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。</p>
+<p>只进行值的复制，如果复制的值是个取值函数，那么求值后复制。</p>
+<p>可以处理数组，但会把数组看做对象</p>
+<p>同值属性被覆盖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;</span><br><span class="line">  x:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> source = &#123;</span><br><span class="line">  x:<span class="number">1</span>,</span><br><span class="line">  y:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.assign(target,source);</span><br><span class="line"><span class="comment">//target &#123;x:1,y:0&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-Object-create-prototype-propertiesObject-使用指定的原型对象及其属性去创建一个新的对象"><a href="#2-Object-create-prototype-propertiesObject-使用指定的原型对象及其属性去创建一个新的对象" class="headerlink" title="2.Object.create(prototype,[propertiesObject]); 使用指定的原型对象及其属性去创建一个新的对象"></a>2.Object.create(prototype,[propertiesObject]); 使用指定的原型对象及其属性去创建一个新的对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =&#123;</span><br><span class="line">  x:<span class="number">0</span>,</span><br><span class="line">  y:<span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Object</span>.create(a,&#123;</span><br><span class="line">  z:&#123;</span><br><span class="line">    writable:<span class="literal">true</span>, <span class="comment">//是否可以采用 数据运算符 进行赋值</span></span><br><span class="line">    configurable:<span class="literal">true</span>,  <span class="comment">//是否可以修改、删除</span></span><br><span class="line">    value: <span class="string">"newAdd"</span> <span class="comment">//值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">输出： b = &#123;<span class="attr">z</span>:<span class="string">'newAdd'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-Object-defineProperties-obj-props-直接在一个对象上定义新的属性或修改现有属性，并返回该对象-（批量）"><a href="#3-Object-defineProperties-obj-props-直接在一个对象上定义新的属性或修改现有属性，并返回该对象-（批量）" class="headerlink" title="3.Object.defineProperties(obj,props); 直接在一个对象上定义新的属性或修改现有属性，并返回该对象 （批量）"></a>3.Object.defineProperties(obj,props); 直接在一个对象上定义新的属性或修改现有属性，并返回该对象 （批量）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(obj, </span><br><span class="line">&#123;  </span><br><span class="line">   <span class="string">'property1'</span>: &#123;    </span><br><span class="line">       value: <span class="literal">true</span>,  </span><br><span class="line">        writable: <span class="literal">true</span> </span><br><span class="line">   &#125;,  </span><br><span class="line">  <span class="string">'property2'</span>: &#123;   </span><br><span class="line">     value: <span class="string">'Hello'</span>,</span><br><span class="line">     writable: <span class="literal">false</span>  </span><br><span class="line">  &#125;  <span class="comment">// etc. etc.</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;property1: true, property2: "Hello"&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Object-defineProperty-obj-prop-descriptor-在一个对象上定义一个新属性，或者修改一个对象的现有属性，-并返回这个对象。（单个）"><a href="#4-Object-defineProperty-obj-prop-descriptor-在一个对象上定义一个新属性，或者修改一个对象的现有属性，-并返回这个对象。（单个）" class="headerlink" title="4.Object.defineProperty(obj,prop,descriptor); 在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。（单个）"></a>4.Object.defineProperty(obj,prop,descriptor); 在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。（单个）</h2><p>obj：必需。目标对象<br>prop：必需。需定义或修改的属性的名字<br>descriptor：必需。目标属性所拥有的特性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">Object</span> = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">Object</span>, <span class="string">'is'</span>, </span><br><span class="line">&#123;  </span><br><span class="line">     value: <span class="number">2</span>,  </span><br><span class="line">     configurable: <span class="literal">true</span>,  <span class="comment">// 是否可以删除或者再次修改属性</span></span><br><span class="line">     enumerable: <span class="literal">false</span>,  <span class="comment">//是否可以被枚举</span></span><br><span class="line">     writable: <span class="literal">true</span>   <span class="comment">//  是否可以被重写</span></span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Object = &#123;is:2&#125;</span></span><br><span class="line"><span class="comment">// 注意不能同时设置(writable，value) 和 get，set方法，否则浏览器会报错  </span></span><br><span class="line"><span class="comment">// 如果不设置属性特性。configurable、enumerable、writable 都默认为false</span></span><br><span class="line"><span class="comment">//Invalid property descriptor.  Cannot both specify accessors and a value or writable attribute</span></span><br></pre></td></tr></table></figure></p>
+<p>getter/setter<br>当设置或获取对象的某个属性的值的时候，可以提供getter/setter方法。</p>
+<p>getter 是一种获得属性值的方法<br>setter是一种设置属性值的方法。</p>
+<p>可在获取值和设置值的时候触发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> initValue = <span class="string">'hello'</span>;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">"newKey"</span>,&#123;</span><br><span class="line">    <span class="keyword">get</span>:function ()&#123;</span><br><span class="line">        <span class="comment">//当获取值的时候触发的函数</span></span><br><span class="line">        <span class="keyword">return</span> initValue;    </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>:function (value)&#123;</span><br><span class="line">        <span class="comment">//当设置值的时候触发的函数,设置的新值通过参数value拿到</span></span><br><span class="line">        initValue = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//获取值</span></span><br><span class="line"><span class="built_in">console</span>.log( obj.newKey );  <span class="comment">//hello</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置值</span></span><br><span class="line">obj.newKey = <span class="string">'change value'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( obj.newKey ); <span class="comment">//change value</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-Object-keys-返回一个由一个给定对象的自身可枚举属性组成的数组-顺序与for…in获取的相同，但是for-i还会魅族其原型链的属性"><a href="#5-Object-keys-返回一个由一个给定对象的自身可枚举属性组成的数组-顺序与for…in获取的相同，但是for-i还会魅族其原型链的属性" class="headerlink" title="5.Object.keys(); 返回一个由一个给定对象的自身可枚举属性组成的数组,顺序与for…in获取的相同，但是for..i还会魅族其原型链的属性"></a>5.Object.keys(); 返回一个由一个给定对象的自身可枚举属性组成的数组,顺序与for…in获取的相同，但是for..i还会魅族其原型链的属性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(arr));<span class="comment">// ['0', '1', '2']/* Object 对象 */</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">foo</span>: <span class="string">"bar"</span>, <span class="attr">baz</span>: <span class="number">42</span> &#125;, keys = <span class="built_in">Object</span>.keys(obj);</span><br><span class="line"><span class="built_in">console</span>.log(keys);<span class="comment">// ["foo","baz"]</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-Object-values-方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同-区别在于-for-in-循环枚举原型链中的属性-。Object-values会过滤属性名为-Symbol-值的属性。"><a href="#6-Object-values-方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同-区别在于-for-in-循环枚举原型链中的属性-。Object-values会过滤属性名为-Symbol-值的属性。" class="headerlink" title="6.Object.values(); 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。Object.values会过滤属性名为 Symbol 值的属性。"></a>6.Object.values(); 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for…in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。Object.values会过滤属性名为 Symbol 值的属性。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.values(an_obj)); <span class="comment">// ['b', 'c', 'a']</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="number">0</span>: <span class="string">'a'</span>, <span class="number">1</span>: <span class="string">'b'</span>, <span class="number">2</span>: <span class="string">'c'</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.values(obj)); <span class="comment">// ['a', 'b', 'c']</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-Object-entries-返回一个给定对象自身可枚举属性的键值对数组，其排列与使用-for…in-循环遍历该对象时返回的顺序一致（区别在于-for-in-循环也枚举原型链中的属性）。"><a href="#7-Object-entries-返回一个给定对象自身可枚举属性的键值对数组，其排列与使用-for…in-循环遍历该对象时返回的顺序一致（区别在于-for-in-循环也枚举原型链中的属性）。" class="headerlink" title="7.Object.entries(); 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for…in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。"></a>7.Object.entries(); 返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for…in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">foo</span>: <span class="string">'bar'</span>, <span class="attr">baz</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.entries(obj)); <span class="comment">// [ ['foo', 'bar'], ['baz', 42] ]</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> simuArray = &#123; <span class="number">0</span>: <span class="string">'a'</span>, <span class="number">1</span>: <span class="string">'b'</span>, <span class="number">2</span>: <span class="string">'c'</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.entries(simuArray)); <span class="comment">// [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ]</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-hasOwnProperty"><a href="#8-hasOwnProperty" class="headerlink" title="8.hasOwnProperty()"></a>8.hasOwnProperty()</h2><p>判断对象自身属性中是否具有指定的属性。</p>
+<p>obj.hasOwnProperty(‘name’)</p>
+<h2 id="9-Object-getOwnPropertyDescriptor-obj-prop-返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）-如果指定的属性存在于对象上，则返回其属性描述符对象（property-descriptor），否则返回-undefined。"><a href="#9-Object-getOwnPropertyDescriptor-obj-prop-返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）-如果指定的属性存在于对象上，则返回其属性描述符对象（property-descriptor），否则返回-undefined。" class="headerlink" title="9.Object.getOwnPropertyDescriptor(obj,prop);返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）.如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。"></a>9.Object.getOwnPropertyDescriptor(obj,prop);返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）.如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'name'</span>,<span class="string">'age'</span>] ;</span><br><span class="line">arr.forEach(<span class="function"><span class="params">val</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(obj,val)))</span><br><span class="line"><span class="comment">// &#123;value: "js", writable: true, enumerable: true, configurable: true&#125;</span></span><br><span class="line"><span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-Object-getOwnPropertyDescriptors-obj-获取一个对象的所有自身属性的描述符。"><a href="#10-Object-getOwnPropertyDescriptors-obj-获取一个对象的所有自身属性的描述符。" class="headerlink" title="10.  Object.getOwnPropertyDescriptors(obj)  获取一个对象的所有自身属性的描述符。"></a>10.  Object.getOwnPropertyDescriptors(obj)  获取一个对象的所有自身属性的描述符。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name : <span class="string">'js'</span>,</span><br><span class="line">    age : <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptors(obj))</span><br></pre></td></tr></table></figure>
+<h2 id="11-Object-getOwnPropertyNames-返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。"><a href="#11-Object-getOwnPropertyNames-返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。" class="headerlink" title="11. Object.getOwnPropertyNames(); 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。"></a>11. Object.getOwnPropertyNames(); 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="number">0</span>: <span class="string">"a"</span>, <span class="number">1</span>: <span class="string">"b"</span>, <span class="number">2</span>: <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'z'</span>,&#123;</span><br><span class="line">    enumerable : <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(obj))  <span class="comment">// ["x", "y", "z"] 包含不可枚举属性 。</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(obj))                 <span class="comment">// ["x", "y"]      只包含可枚举属性 。</span></span><br></pre></td></tr></table></figure>
+<h2 id="12-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。"><a href="#12-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。" class="headerlink" title="12 Object.getOwnPropertySymbols();返回一个给定对象自身的所有 Symbol 属性的数组。"></a>12 Object.getOwnPropertySymbols();返回一个给定对象自身的所有 Symbol 属性的数组。</h2><h2 id="13-isPrototypeOf-判断一个对象是否存在一另一个对象的原型链上"><a href="#13-isPrototypeOf-判断一个对象是否存在一另一个对象的原型链上" class="headerlink" title="13 isPrototypeOf(); 判断一个对象是否存在一另一个对象的原型链上"></a>13 isPrototypeOf(); 判断一个对象是否存在一另一个对象的原型链上</h2><h2 id="14-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。"><a href="#14-Object-getOwnPropertySymbols-返回一个给定对象自身的所有-Symbol-属性的数组。" class="headerlink" title="14 Object.getOwnPropertySymbols(); 返回一个给定对象自身的所有 Symbol 属性的数组。"></a>14 Object.getOwnPropertySymbols(); 返回一个给定对象自身的所有 Symbol 属性的数组。</h2><h2 id="15-Object-is-判断两个对象是否相同"><a href="#15-Object-is-判断两个对象是否相同" class="headerlink" title="15 Object.is(); 判断两个对象是否相同"></a>15 Object.is(); 判断两个对象是否相同</h2><p>如果下列任何一项成立，则返回true<br>两个值都是 undefined<br>两个值都是 null<br>两个值都是 true 或者都是 false<br>两个值是由相同个数的字符按照相同的顺序组成的字符串<br>两个值指向同一个对象<br>两个值都是数字并且<br>都是正零 +0<br>都是负零 -0<br>都是 NaN<br>都是除零和 NaN 外的其它同一个数字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.is(<span class="string">'foo'</span>, <span class="string">'foo'</span>);     <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="built_in">window</span>, <span class="built_in">window</span>);   <span class="comment">// true</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">Object</span>.is(<span class="string">'foo'</span>, <span class="string">'bar'</span>);     <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Object</span>.is([], []);           <span class="comment">// false</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> test = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.is(test, test);       <span class="comment">// true</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">Object</span>.is(<span class="literal">null</span>, <span class="literal">null</span>);       <span class="comment">// true</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 特例</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="number">0</span>, <span class="number">-0</span>);            <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="number">-0</span>, <span class="number">-0</span>);           <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="number">0</span>/<span class="number">0</span>);         <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="16-Object-freeze-冻结一个对象。被冻结的对象-是永远不变的，返回被冻结的对象"><a href="#16-Object-freeze-冻结一个对象。被冻结的对象-是永远不变的，返回被冻结的对象" class="headerlink" title="16 Object.freeze() 冻结一个对象。被冻结的对象 是永远不变的，返回被冻结的对象"></a>16 Object.freeze() 冻结一个对象。被冻结的对象 是永远不变的，返回被冻结的对象</h2><h2 id="17-Object-isFrozen-判断一个对象是否被冻结"><a href="#17-Object-isFrozen-判断一个对象是否被冻结" class="headerlink" title="17 Object.isFrozen() 判断一个对象是否被冻结 ."></a>17 Object.isFrozen() 判断一个对象是否被冻结 .</h2><h2 id="18-Object-preventExtensions-对象不能再添加新的属性。可修改，删除现有属性"><a href="#18-Object-preventExtensions-对象不能再添加新的属性。可修改，删除现有属性" class="headerlink" title="18 Object.preventExtensions()  对象不能再添加新的属性。可修改，删除现有属性"></a>18 Object.preventExtensions()  对象不能再添加新的属性。可修改，删除现有属性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name :<span class="string">'lilei'</span>,</span><br><span class="line">    age : <span class="number">30</span> ,</span><br><span class="line">    sex : <span class="string">'male'</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">obj = <span class="built_in">Object</span>.preventExtensions(obj);</span><br><span class="line"><span class="built_in">console</span>.log(obj);    <span class="comment">// &#123;name: "lilei", age: 30, sex: "male"&#125;</span></span><br><span class="line">obj.name = <span class="string">'haha'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj)     <span class="comment">// &#123;name: "haha", age: 30, sex: "male"&#125;</span></span><br><span class="line"><span class="keyword">delete</span> obj.sex ;</span><br><span class="line"><span class="built_in">console</span>.log(obj);    <span class="comment">// &#123;name: "haha", age: 30&#125;</span></span><br><span class="line">obj.address  = <span class="string">'china'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj)     <span class="comment">// &#123;name: "haha", age: 30&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="19-Object-isExtensible-判断对象是否是可扩展的，Object-preventExtensions，Object-seal-或-Object-freeze-方法都可以标记一个对象为不可扩展（non-extensible）"><a href="#19-Object-isExtensible-判断对象是否是可扩展的，Object-preventExtensions，Object-seal-或-Object-freeze-方法都可以标记一个对象为不可扩展（non-extensible）" class="headerlink" title="19 Object.isExtensible() 判断对象是否是可扩展的，Object.preventExtensions，Object.seal 或 Object.freeze 方法都可以标记一个对象为不可扩展（non-extensible）"></a>19 Object.isExtensible() 判断对象是否是可扩展的，Object.preventExtensions，Object.seal 或 Object.freeze 方法都可以标记一个对象为不可扩展（non-extensible）</h2><h2 id="20-Object-seal-让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError-异常-不会影响从原型链上继承的属性。但-proto-属性的值也会不能修改。"><a href="#20-Object-seal-让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError-异常-不会影响从原型链上继承的属性。但-proto-属性的值也会不能修改。" class="headerlink" title="20 Object.seal() 让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性。但 proto (  ) 属性的值也会不能修改。"></a>20 Object.seal() 让一个对象密封，并返回被密封后的对象。密封一个对象会让这个对象变的不能添加新属性，且所有已有属性会变的不可配置。属性不可配置的效果就是属性变的不可删除，以及一个数据属性不能被重新定义成为访问器属性，或者反之。但属性的值仍然可以修改。尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性。但 <strong>proto</strong> (  ) 属性的值也会不能修改。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    prop: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    foo: <span class="string">"bar"</span></span><br><span class="line">  &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 可以添加新的属性,已有属性的值可以修改,可以删除</span></span><br><span class="line">obj.foo = <span class="string">"baz"</span>;</span><br><span class="line">obj.lumpy = <span class="string">"woof"</span>;</span><br><span class="line"><span class="keyword">delete</span> obj.prop;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.seal(obj);</span><br><span class="line"> </span><br><span class="line">assert(o === obj);</span><br><span class="line">assert(<span class="built_in">Object</span>.isSealed(obj) === <span class="literal">true</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 仍然可以修改密封对象上的属性的值.</span></span><br><span class="line">obj.foo = <span class="string">"quux"</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 但你不能把一个数据属性重定义成访问器属性.</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"foo"</span>, &#123; <span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"g"</span>; &#125; &#125;); <span class="comment">// 抛出TypeError异常</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 现在,任何属性值以外的修改操作都会失败.</span></span><br><span class="line">obj.quaxxor = <span class="string">"the friendly duck"</span>; <span class="comment">// 静默失败,新属性没有成功添加</span></span><br><span class="line"><span class="keyword">delete</span> obj.foo; <span class="comment">// 静默失败,属性没有删除成功</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ...在严格模式中,会抛出TypeError异常</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">delete</span> obj.foo; <span class="comment">// 抛出TypeError异常</span></span><br><span class="line">  obj.sparky = <span class="string">"arf"</span>; <span class="comment">// 抛出TypeError异常</span></span><br><span class="line">&#125;</span><br><span class="line">fail();</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用Object.defineProperty方法同样会抛出异常</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"ohai"</span>, &#123; <span class="attr">value</span>: <span class="number">17</span> &#125;); <span class="comment">// 抛出TypeError异常</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"foo"</span>, &#123; <span class="attr">value</span>: <span class="string">"eit"</span> &#125;); <span class="comment">// 成功将原有值改变</span></span><br></pre></td></tr></table></figure>
+<h2 id="21-Object-isSealed-判断一个对象是否密闭"><a href="#21-Object-isSealed-判断一个对象是否密闭" class="headerlink" title="21.Object.isSealed() 判断一个对象是否密闭"></a>21.Object.isSealed() 判断一个对象是否密闭</h2><h2 id="Object状态"><a href="#Object状态" class="headerlink" title="Object状态:"></a>Object状态:</h2><p>1.冻结。永远不会变<br>2.密闭。<br>  a:不可添加新属性<br>  b:已有属性变的不可删除<br>  c:数据的属性不能被重新定义为转换器属性<br>  d:属性值仍然可以修改<br>  e:尝试删除一个密封对象的属性或者将某个密封对象的属性从数据属性转换成访问器属性，结果会静默失败或抛出TypeError 异常. 不会影响从原型链上继承的属性<br>  f:<strong>proto</strong> (  ) 属性的值也会不能修改<br>3.不可扩展：对象不能再添加新的属性。可修改，删除现有属性</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-04T01:55:42.493Z" itemprop="dateUpdated">2019-03-04 09:55:42</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/02/28/20190228-1/&title=《object方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/02/28/20190228-1/&title=《object方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/02/28/20190228-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《object方法》 — 希染&url=http://huangXin1538.github.io/2019/02/28/20190228-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/02/28/20190228-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/26/20190226-1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">call 和 apply 用法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>footer.license</span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/02/28/20190228-1/&title=《object方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/02/28/20190228-1/&title=《object方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/02/28/20190228-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《object方法》 — 希染&url=http://huangXin1538.github.io/2019/02/28/20190228-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/02/28/20190228-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS27DMAxFUe9/0+40QGDlPlEuIOp6VLR2rJMBy9914ev+uD5/8/Tz9/38M8dPlS4ZMmRsy7iHF3klefHTneQLGp9NhgwZ5zCeXkzuqQdNEsp/nFmGDBkycEhNgyYJ6zJkyJCRMviLx4lgPdDLkCHjNAYJheP700BMPu2VWlyGDBkbMlYVmW/8/Mp8Q4YMGVsx7vBKB5aVoBycSoYMGa0ZaSttbUhdPBCVIUNGU0YaCkmIJH+dK2LjPQ4ZMmS0YMyF17kEkYfaNCWVIUNGb0aldBwftzKw5K03GTJknMDgoZM31Dh41bMyZMg4k7F20aFemqK3y5Ah4zAGT/vm9h9WLV6g/xsyZMhoxOBjRd7oT9tt5L0/JrEyZMhozSDDy3rj7MXmnQwZMpoy0kYYH1jWFzh4GipDhozeDNLkmkvp0ubdXHGLeDJkyNicQdIyfqy1JW7wOTJkyDiGMbdaka638tEmAciQIeMExqojpuunaYkb5LYyZMhoykgTvvohSHuOjx9kyJBxDoMXk2mzjITgerNPhgwZ5zB46cjL1MkdEMyTIUNGb8YdXiT5S4Nymp5e/DuWIUNGC0a6W8VL0HRgWRmgypAh4wTGXJBN23PkcDzgouGlDBky2jGCqjd8ivDSIvYx4MqQIUMGTgp5gjg3CkUPyJAh43jGqubd3Fe2LODKkCFjK8bcgkXlWR4zF7fbZMiQsSEjXXFIG23/tDMiQ4aMnow/jHVW5NwRcBsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

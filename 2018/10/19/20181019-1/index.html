@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>js中五种检测数据类型方法 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="背景最近公司项目不多，静下心来整理一些东西（不加班的feel倍儿爽）。js判断数据类型算是很常用的代码了，不管是项目中还是面试，必不可少啊，值得一记。 方法1.typeOftypeOf 为一个一元运算符，放在一个运算数之前，运算数可以是任何类型。返回结果为一个字符串，该字符串对应运算数的数据类型。 用法：typeOf + 运算数 或 typeOf (运算数) 结果展示：12345678910typ">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中五种检测数据类型方法">
+<meta property="og:url" content="http://huangXin1538.github.io/2018/10/19/20181019-1/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="背景最近公司项目不多，静下心来整理一些东西（不加班的feel倍儿爽）。js判断数据类型算是很常用的代码了，不管是项目中还是面试，必不可少啊，值得一记。 方法1.typeOftypeOf 为一个一元运算符，放在一个运算数之前，运算数可以是任何类型。返回结果为一个字符串，该字符串对应运算数的数据类型。 用法：typeOf + 运算数 或 typeOf (运算数) 结果展示：12345678910typ">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-04T01:54:43.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中五种检测数据类型方法">
+<meta name="twitter:description" content="背景最近公司项目不多，静下心来整理一些东西（不加班的feel倍儿爽）。js判断数据类型算是很常用的代码了，不管是项目中还是面试，必不可少啊，值得一记。 方法1.typeOftypeOf 为一个一元运算符，放在一个运算数之前，运算数可以是任何类型。返回结果为一个字符串，该字符串对应运算数的数据类型。 用法：typeOf + 运算数 或 typeOf (运算数) 结果展示：12345678910typ">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js中五种检测数据类型方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js中五种检测数据类型方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-19T03:05:26.000Z" itemprop="datePublished" class="page-time">
+  2018-10-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-typeOf"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.typeOf</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-instanceof"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.instanceof</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-constructor"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3.constructor</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-严格运算符"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4.严格运算符 ===</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-Object-prototype-toString-call"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5.Object.prototype.toString.call()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-20181019-1" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js中五种检测数据类型方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-19 11:05:26" datetime="2018-10-19T03:05:26.000Z" itemprop="datePublished">2018-10-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近公司项目不多，静下心来整理一些东西（不加班的feel倍儿爽）。<br>js判断数据类型算是很常用的代码了，不管是项目中还是面试，必不可少啊，值得一记。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="1-typeOf"><a href="#1-typeOf" class="headerlink" title="1.typeOf"></a>1.typeOf</h3><p>typeOf 为一个一元运算符，放在一个运算数之前，运算数可以是任何类型。<br>返回结果为一个字符串，该字符串对应运算数的数据类型。</p>
+<p>用法：typeOf + 运算数 或 typeOf (运算数)</p>
+<p>结果展示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>(); <span class="comment">// symbol 有效，symbol为es6中第七种数据类型</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">''</span>; <span class="comment">// string 有效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">1</span>; <span class="comment">// number 有效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>; <span class="comment">//boolean 有效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>; <span class="comment">//undefined 有效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">Function</span>(); <span class="comment">// function 有效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>; <span class="comment">//object 无效</span></span><br><span class="line"><span class="keyword">typeof</span> [] ; <span class="comment">//object 无效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">//object 无效</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(); <span class="comment">//object 无效</span></span><br></pre></td></tr></table></figure></p>
+<p>注意：<br>typeof null 的问题<br>不同的对象在底层都表示为二进制，在 JavaScript 中二进制前三位都为 0 的话会被判<br>断为 object 类型， null 的二进制表示是全 0，自然前三位也是 0，所以执行 typeof 时会返回“ object ”,typeOf对null束手无策。</p>
+<p>typeOf [] 的问题<br>JS中因为数组也是属于对象的，所以判断是不是数组，typeOf表示：不好办啊</p>
+<p>同理，日期类型Date()和正则表达式RegExp() 也是属于对象,所以Date()/RegExp()/[]/null 不能用typeOf来检测</p>
+<h3 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h3><p>用法： object instanceof constructor</p>
+<p>instanceof 同为一元运算符，用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性</p>
+<p>看起来比较绕，上例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span>;</span><br></pre></td></tr></table></figure></p>
+<p>instanceof 可以检测 某个对象是否为数组、日期、regexp() 类型</p>
+<p>注意：<br>因为undefined 和null 类型，访问不到内部，所以不能用instanceof判断</p>
+<h3 id="3-constructor"><a href="#3-constructor" class="headerlink" title="3.constructor"></a>3.constructor</h3><p>constructor作用和instanceof非常相似。但constructor检测 Object与instanceof不一样，还可以处理基本数据类型的检测。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'abc'</span>;</span><br><span class="line">a.constructor===<span class="built_in">String</span>;<span class="comment">//true</span></span><br><span class="line">a.constructor===<span class="built_in">Array</span>;<span class="comment">//false</span></span><br><span class="line">a.constructor===<span class="built_in">RegExp</span>;<span class="comment">//false</span></span><br><span class="line">(<span class="number">1</span>).constructor===<span class="built_in">Number</span>;<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/[0-9]/</span>;</span><br><span class="line">reg.constructor===<span class="built_in">RegExp</span>;<span class="comment">//true</span></span><br><span class="line">reg.constructor===<span class="built_in">Object</span>;<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>注意：<br>1.constructor 不能用于判断null和undefined （不存在constructor）<br>2.如果object被重新覆盖，检测结果就会不准确</p>
+<h3 id="4-严格运算符"><a href="#4-严格运算符" class="headerlink" title="4.严格运算符 ==="></a>4.严格运算符 ===</h3><p>只能用于判断null 和 undefined</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span></span><br><span class="line"><span class="keyword">typeof</span> a <span class="comment">// "object"</span></span><br><span class="line">a === <span class="literal">null</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-Object-prototype-toString-call"><a href="#5-Object-prototype-toString-call" class="headerlink" title="5.Object.prototype.toString.call()"></a>5.Object.prototype.toString.call()</h3><p>这个方法就比较花里胡哨了，在以前的项目中也基本没用过这个方式。</p>
+<p>toString方法，在Object原型上的返回，是数据的格式。因为不同类型的toString方法，都被重写。<br>所以obj.toString和Object.prototype.toString.call(obj)的结果不同。</p>
+<p>优点：可以判断所有类型<br>缺点：得到的结果为’[object String]’类型的字符串，需要处理一下格式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="string">"jerry"</span>));<span class="comment">//[object String]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="number">12</span>));     <span class="comment">//[object Number]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>));   <span class="comment">//[object Boolean]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>));<span class="comment">//[object Undefined]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>));   <span class="comment">//[object Null]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(&#123;<span class="attr">name</span>: <span class="string">"jerry"</span>&#125;));<span class="comment">//[object Object]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;));    <span class="comment">//[object Function]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call([]));        <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Date</span>));        <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="regexp">/\d/</span>));        <span class="comment">//[object RegExp]</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上，可以得出结论</p>
+<p>Symbol、string、number、boolean、function、undefined  使用 typeOf()</p>
+<p>null、[]、obj、Date()、RegExp()  使用instanceof </p>
+<p>或者所有的类型检测都用Object.prototype.toString.call(),更有逼格。</p>
+<p>即可做到正确检测。<br>就酱。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-04T01:54:43.238Z" itemprop="dateUpdated">2019-03-04 09:54:43</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2018/10/19/20181019-1/&title=《js中五种检测数据类型方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2018/10/19/20181019-1/&title=《js中五种检测数据类型方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2018/10/19/20181019-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js中五种检测数据类型方法》 — 希染&url=http://huangXin1538.github.io/2018/10/19/20181019-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2018/10/19/20181019-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/22/20181022-1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js构造函数的继承（持续更新）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/17/20181017-1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">git生成公钥</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>footer.license</span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2018/10/19/20181019-1/&title=《js中五种检测数据类型方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2018/10/19/20181019-1/&title=《js中五种检测数据类型方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2018/10/19/20181019-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js中五种检测数据类型方法》 — 希染&url=http://huangXin1538.github.io/2018/10/19/20181019-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2018/10/19/20181019-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQW7DMAwEwP7/0+61BWp1V0oCWBqdgiaVNT4QJMWvr3hdN+vnt3e/TPa8+8uLFwYGxmMZ13CNH5A/ON9h/FJun4iBgXEA4+7ByW9WgmbCGJ8NAwMDYxwE14Nmvg8GBgZGyxgH0LtfJiUuBgYGxkoR24bFOdjba3EMDIwHMvJS8/Of33K/gYGB8SjGVa4kaLaJ4FzR+2tPDAyMrRl5gMvb9/nnuRGN2xeHgYFxMCMfj8gPPVfEFtkrBgbGRoxxStdSk93ahlr0ajAwMA5gtIVoi28TvjzUYmBgnMNIisk2CCbguqF2dxIMDIytGW3aN3fFuFRh54EbAwPjAMZc2tcOe712COOPgIuBgXEMY641NndJsJ6GYmBgnMZoLy/fcQEw2bzDwMDYlLGS0iXtsHa8o/07BgbGmYy24ZUfdyWVLIYtMDAwNmWMw1zeVsvTx/qg430wMDAOYMwdei7U5q8gAWBgYJzAmAuIKwG6TSjbM2BgYOzKWLkAaEci8mfV4xcYGBgHMOZa/21wbBt8RamMgYFxDCMvHduBiZWSONoTAwNjU8ZVriT5G7PbMjUK1hgYGFsz8pWkj+0gRVv01r1DDAyMjRhtkG0Bc8Nk+VgGBgbGOYy86l0Zs8gL4BaJgYGBkTfL8vGvvK0W/RcGBgZG/OD28qAd1/iniMXAwNiasV6Uzn2bh9SXtdswMDAeyGhHHPKW/UdnRjAwMPZkfAPzZjf1QqFQYQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>eventLoop机制 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="1.js为单线程假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？这就意味着，单线程为js核心标准，将一直沿用下去。 web worker : 号称让js成为一门多线程语言所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eventLoop机制">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/01/30/20190130-1/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="1.js为单线程假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？这就意味着，单线程为js核心标准，将一直沿用下去。 web worker : 号称让js成为一门多线程语言所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-04T07:13:17.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eventLoop机制">
+<meta name="twitter:description" content="1.js为单线程假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？这就意味着，单线程为js核心标准，将一直沿用下去。 web worker : 号称让js成为一门多线程语言所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">eventLoop机制</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">eventLoop机制</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-30T09:49:04.000Z" itemprop="datePublished" class="page-time">
+  2019-01-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-js为单线程"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.js为单线程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-事件循环"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.事件循环</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-macro-task和-micro-task"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.macro task和 micro task</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-20190130-1" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">eventLoop机制</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-30 17:49:04" datetime="2019-01-30T09:49:04.000Z" itemprop="datePublished">2019-01-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1-js为单线程"><a href="#1-js为单线程" class="headerlink" title="1.js为单线程"></a>1.js为单线程</h2><p>假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？<br>这就意味着，单线程为js核心标准，将一直沿用下去。</p>
+<p>web worker : 号称让js成为一门多线程语言<br>所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。<br>子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程本质。</p>
+<h2 id="2-事件循环"><a href="#2-事件循环" class="headerlink" title="2.事件循环"></a>2.事件循环</h2><p>一直在查找新的事件执行，一次执行的循环成为tick，循环里执行的代码称为task</p>
+<p>任务分同步和异步<br>js执行时将不同变量存在内存的不同位置：堆（heap）和栈（stack）中区分。<br>堆中一般存变量，stack一般存函数和方法。<br>stack叫做执行栈，方法会依次在这里执行。<br>执行栈事件先进先出，任务队列先进先出。<br>web apis代表异步事件，callback queue事件队列</p>
+<p>执行栈执行主线程任务，当有<font color="#ff0000">操作dom，ajax交互，定时器</font> 等异步操作时候，任务会移入到callback queue任务队列<br>当主线程执行完毕后，读取callbakc quene队列中的函数，进入主线程执行。<br>不断重复，就是常说的<font color="#ff0000">事件循环（eventloop）</font></p>
+<h2 id="3-macro-task和-micro-task"><a href="#3-macro-task和-micro-task" class="headerlink" title="3.macro task和 micro task"></a>3.macro task和 micro task</h2><p>不同的异步任务会分为两类：微任务（micro）和宏任务（macro）</p>
+<p>在一个事件循环中，异步事件返回结果后被放到对应的宏任务队列或者微任务队列中去。</p>
+<font color="#ff0000">宏任务-&gt;这个宏任务中的微任务-&gt;下一个宏任务-&gt;下一个宏任务添加的微任务</font>
+
+<p>当执行栈为空时，主线程会首先查看微任务中的事件，如果微任务不是空执行微任务。如果没有任务，在宏任务中取出最前面的一个事件，把对应的回调加入当前执行栈………  如此反复，进入循环</p>
+<p>macro-task(宏任务)<br>  整体代码<br>  settimeout<br>  setinterval<br>  setlmmediate</p>
+<p>  主代码块 &gt; setImmediate &gt; MessageChannel &gt; setTimeout / setInterval</p>
+<p>micro-task(微任务)</p>
+<p>  process.nextTick &gt; Promise &gt; MutationObserver</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-04T07:13:17.350Z" itemprop="dateUpdated">2019-03-04 15:13:17</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/01/30/20190130-1/&title=《eventLoop机制》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/01/30/20190130-1/&title=《eventLoop机制》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/01/30/20190130-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《eventLoop机制》 — 希染&url=http://huangXin1538.github.io/2019/01/30/20190130-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/01/30/20190130-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/30/20190130-2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vue双向绑定原理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/06/20181206-1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">meta 标签内属性详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>footer.license</span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/01/30/20190130-1/&title=《eventLoop机制》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/01/30/20190130-1/&title=《eventLoop机制》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/01/30/20190130-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《eventLoop机制》 — 希染&url=http://huangXin1538.github.io/2019/01/30/20190130-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/01/30/20190130-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aMW7DMAwF0Nz/0i7QqUBh+5N0BktPU5BGqp8HghT5+cTr+F1n3xx/VrLr/97rcx5bGBgYr2Ucl+vsN/ne68fNYdfnY2Bg7MC4DrI3RxRfSh64k10YGBgYzyZ5eZDFwMDAmDMSUq8cxcDAwJgUsfmuZ/c+XItjYGC8kDEJgt/+/MX+BgYGxksYR3F9IwjmJ5/+RwwMjKUZ+RXYpOWZlLX5iyhkuBgYGEsweuMU1cRuEtajtgQGBsY2jOtr9xyQ/LU3rnF6DgYGxjaMasCtPlxeylZJGBgYazOqD3STosVDGJMXcfMbDAyMpRlJUpiTeknhpOjFwMBYlVFOvB5K9fLmQSHDxcDA2IDRO2jeQ5w0RzEwMHZgVAvO3phXfqE2aTxgYGCszZgMWFSpk7GMaDgMAwNjUUavAVBtc1YbCQ9c3mFgYGzA6CWL1b5EXjYX+hsYGBjLMfICslp2Vke7kgZq1H3FwMBYjlFN9fJiNUkTJ0H/9NYQAwNjIUaeM5YHIFrXc9VuBgYGxp6Mx44uhuC8YL6ZGcHAwFiOMVnVJkF+3dZLOjEwMFZl9K7g89J0nkRGiSYGBsbSjF54nQToXhPisdQQAwPjtYzeSMSEXR22iDJcDAyMDRh5mTppG8xr62hmBAMDY2PGJL2rXv2XG6IYGBgYQbKYN0TnAxkYGBh7MvIiNh+DSErQybgYBgbGPozeaEXyKL0kr3ndhoGBsSbjB+Qco4mkT45wAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
