@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huangXin1538.github.io/"/>
-  <updated>2019-03-15T07:33:17.336Z</updated>
+  <updated>2019-03-29T06:26:09.817Z</updated>
   <id>http://huangXin1538.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>html5调起摄像头拍照</title>
+    <link href="http://huangXin1538.github.io/2019/03/29/20190329-1/"/>
+    <id>http://huangXin1538.github.io/2019/03/29/20190329-1/</id>
+    <published>2019-03-29T06:19:23.000Z</published>
+    <updated>2019-03-29T06:26:09.817Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// html部分</span></span><br><span class="line">&lt;video id=<span class="string">"video"</span> width=<span class="string">"480"</span> height=<span class="string">"320"</span> controls&gt;&lt;/video&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;button id=<span class="string">"capture"</span>&gt;拍照&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;canvas id=<span class="string">"canvas"</span> width=<span class="string">"480"</span> height=<span class="string">"320"</span>&gt;&lt;/canvas&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> video = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>);</span><br><span class="line"><span class="keyword">let</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">let</span> context = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"><span class="comment">//访问用户媒体设备的兼容方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserMedia</span>(<span class="params">constraints, success, error</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (navigator.mediaDevices.getUserMedia) &#123;</span><br><span class="line">    <span class="comment">//最新的标准API</span></span><br><span class="line">    navigator.mediaDevices</span><br><span class="line">      .getUserMedia(constraints)</span><br><span class="line">      .then(success)</span><br><span class="line">      .catch(error);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.webkitGetUserMedia) &#123;</span><br><span class="line">    <span class="comment">//webkit核心浏览器</span></span><br><span class="line">    navigator.webkitGetUserMedia(constraints, success, error);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.mozGetUserMedia) &#123;</span><br><span class="line">    <span class="comment">//firfox浏览器</span></span><br><span class="line">    navigator.mozGetUserMedia(constraints, success, error);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (navigator.getUserMedia) &#123;</span><br><span class="line">    <span class="comment">//旧版API</span></span><br><span class="line">    navigator.getUserMedia(constraints, success, error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">stream</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//兼容webkit核心浏览器</span></span><br><span class="line">  <span class="keyword">let</span> CompatibleURL = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</span><br><span class="line">  <span class="comment">//将视频流设置为video元素的源</span></span><br><span class="line">  <span class="built_in">console</span>.log(stream);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//video.src = CompatibleURL.createObjectURL(stream);</span></span><br><span class="line">  video.srcObject = stream;</span><br><span class="line">  video.play();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`访问用户媒体设备失败<span class="subst">$&#123;error.name&#125;</span>, <span class="subst">$&#123;error.message&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (</span><br><span class="line">  navigator.mediaDevices.getUserMedia ||</span><br><span class="line">  navigator.getUserMedia ||</span><br><span class="line">  navigator.webkitGetUserMedia ||</span><br><span class="line">  navigator.mozGetUserMedia</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="comment">//调用用户媒体设备, 访问摄像头</span></span><br><span class="line">  getUserMedia(&#123;<span class="attr">video</span>: &#123;<span class="attr">width</span>: <span class="number">480</span>, <span class="attr">height</span>: <span class="number">320</span>&#125;&#125;, success, error);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  alert(<span class="string">"不支持访问用户媒体"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击拍照</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'capture'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  context.drawImage(video, <span class="number">0</span>, <span class="number">0</span>, <span class="number">480</span>, <span class="number">320</span>);      </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
+      
+    
+    </summary>
+    
+    
+      <category term="html5" scheme="http://huangXin1538.github.io/tags/html5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>base64与file格式图片转换</title>
+    <link href="http://huangXin1538.github.io/2019/03/26/20190326-1/"/>
+    <id>http://huangXin1538.github.io/2019/03/26/20190326-1/</id>
+    <published>2019-03-26T07:14:44.000Z</published>
+    <updated>2019-03-29T03:55:43.756Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="base64转file"><a href="#base64转file" class="headerlink" title="base64转file"></a>base64转file</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURLtoFile</span>(<span class="params">dataurl, filename</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//将base64转换为文件</span></span><br><span class="line">  <span class="keyword">var</span> arr = dataurl.split(<span class="string">","</span>),</span><br><span class="line">    mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">    bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">    n = bstr.length,</span><br><span class="line">    u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">  <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">    u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], filename, &#123;</span><br><span class="line">    type: mime</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> file = dataURLtoFile(imgUrl, <span class="string">"img"</span>);</span><br></pre></td></tr></table></figure><h2 id="file转base64"><a href="#file转base64" class="headerlink" title="file转base64"></a>file转base64</h2><p>base64转blob,blob转file<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURLtoBlob</span> (<span class="params">dataurl</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> arr = dataurl.split(<span class="string">','</span>),</span><br><span class="line">      mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">      bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">      n = bstr.length,</span><br><span class="line">      u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">  <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">      u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([u8arr], &#123; <span class="attr">type</span>: mime &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">    <span class="comment">//将blob转换为file</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blobToFile</span>:(<span class="params">theBlob, fileName</span>)</span>&#123;</span><br><span class="line">  theBlob.lastModifiedDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  theBlob.name = fileName;</span><br><span class="line">  <span class="keyword">return</span> theBlob;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="keyword">var</span> blob = dataURLtoBlob(base64Data);</span><br><span class="line"><span class="keyword">var</span> file = blobToFile(blob, imgName);</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;base64转file&quot;&gt;&lt;a href=&quot;#base64转file&quot; class=&quot;headerlink&quot; title=&quot;base64转file&quot;&gt;&lt;/a&gt;base64转file&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://huangXin1538.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>export 和 module export</title>
+    <link href="http://huangXin1538.github.io/2019/03/15/20190315-6/"/>
+    <id>http://huangXin1538.github.io/2019/03/15/20190315-6/</id>
+    <published>2019-03-15T07:50:18.000Z</published>
+    <updated>2019-03-15T07:50:38.241Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://huangXin1538.github.io/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>async await</title>
@@ -336,61 +398,6 @@
       
       
         &lt;h2 id=&quot;1-无模块化&quot;&gt;&lt;a href=&quot;#1-无模块化&quot; class=&quot;headerlink&quot; title=&quot;1.无模块化&quot;&gt;&lt;/a&gt;1.无模块化&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-      
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://huangXin1538.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>闭包机制</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-3/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-3/</id>
-    <published>2019-01-30T09:49:17.000Z</published>
-    <updated>2019-03-01T03:41:46.326Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://huangXin1538.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue双向绑定原理</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-2/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-2/</id>
-    <published>2019-01-30T09:49:13.000Z</published>
-    <updated>2019-01-30T09:51:12.194Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://huangXin1538.github.io/tags/vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>eventLoop机制</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-1/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-1/</id>
-    <published>2019-01-30T09:49:04.000Z</published>
-    <updated>2019-03-04T07:13:17.350Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-js为单线程"><a href="#1-js为单线程" class="headerlink" title="1.js为单线程"></a>1.js为单线程</h2><p>假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线程为准？<br>这就意味着，单线程为js核心标准，将一直沿用下去。</p><p>web worker : 号称让js成为一门多线程语言<br>所有新线程受主线程的控制，不能独立执行。实际上属于主线程的子线程。<br>子线程没有执行I/O操作的权限，只能为主线程分担计算等任务，严格说，这些线程没有完整功能，并非改变了js的单线程本质。</p><h2 id="2-事件循环"><a href="#2-事件循环" class="headerlink" title="2.事件循环"></a>2.事件循环</h2><p>一直在查找新的事件执行，一次执行的循环成为tick，循环里执行的代码称为task</p><p>任务分同步和异步<br>js执行时将不同变量存在内存的不同位置：堆（heap）和栈（stack）中区分。<br>堆中一般存变量，stack一般存函数和方法。<br>stack叫做执行栈，方法会依次在这里执行。<br>执行栈事件先进先出，任务队列先进先出。<br>web apis代表异步事件，callback queue事件队列</p><p>执行栈执行主线程任务，当有<font color="#ff0000">操作dom，ajax交互，定时器</font> 等异步操作时候，任务会移入到callback queue任务队列<br>当主线程执行完毕后，读取callbakc quene队列中的函数，进入主线程执行。<br>不断重复，就是常说的<font color="#ff0000">事件循环（eventloop）</font></p><h2 id="3-macro-task和-micro-task"><a href="#3-macro-task和-micro-task" class="headerlink" title="3.macro task和 micro task"></a>3.macro task和 micro task</h2><p>不同的异步任务会分为两类：微任务（micro）和宏任务（macro）</p><p>在一个事件循环中，异步事件返回结果后被放到对应的宏任务队列或者微任务队列中去。</p><font color="#ff0000">宏任务-&gt;这个宏任务中的微任务-&gt;下一个宏任务-&gt;下一个宏任务添加的微任务</font><p>当执行栈为空时，主线程会首先查看微任务中的事件，如果微任务不是空执行微任务。如果没有任务，在宏任务中取出最前面的一个事件，把对应的回调加入当前执行栈………  如此反复，进入循环</p><p>macro-task(宏任务)<br>  整体代码<br>  settimeout<br>  setinterval<br>  setlmmediate</p><p>  主代码块 &gt; setImmediate &gt; MessageChannel &gt; setTimeout / setInterval</p><p>micro-task(微任务)</p><p>  process.nextTick &gt; Promise &gt; MutationObserver</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1-js为单线程&quot;&gt;&lt;a href=&quot;#1-js为单线程&quot; class=&quot;headerlink&quot; title=&quot;1.js为单线程&quot;&gt;&lt;/a&gt;1.js为单线程&lt;/h2&gt;&lt;p&gt;假设js有两个线程，一个在某个dom添加内容，另一个在这个dom删除内容，浏览器应该以哪个线
       
     
     </summary>
