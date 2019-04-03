@@ -107,7 +107,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -141,6 +141,55 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-20190228-1" class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-02-28 12:00:07" datetime="2019-02-28T04:00:07.000Z" itemprop="datePublished">2019-02-28</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/20190228-1/">object方法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1. Object.assign(target,source1,source2,…); 合并对象将源对象的所有可枚举的属性合并到目标对象上。只拷贝源对象的自身属性，不拷贝继承的属性。
+浅拷贝。如果拷贝的某个属性是对象，那么拷贝到的是这个对象的引用。
+只进行值的复制，如果复制的值是个取值函数，那么求值后复制。
+可以处理数组，但会把数组看做对象
+同值属性被覆盖
+123456789const ta...
+    
+
+        <a href="/2019/02/28/20190228-1/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-20190221-1" class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -171,7 +220,7 @@
     
 
         <a href="/2019/02/21/20190221-1/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -218,7 +267,7 @@ P...
     
 
         <a href="/2019/01/30/20190130-12/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -264,7 +313,7 @@ P...
     
 
         <a href="/2019/01/30/20190130-11/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -311,7 +360,7 @@ rgb(x,x,x)    RGB 值 (比如 rgb(255,0,0))rgb(x%, x%, x%)    RGB 百分比值 (
     
 
         <a href="/2019/01/30/20190130-10/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -358,7 +407,7 @@ rgb(x,x,x)    RGB 值 (比如 rgb(255,0,0))rgb(x%, x%, x%)    RGB 百分比值 (
     
 
         <a href="/2019/01/30/20190130-9/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -405,7 +454,7 @@ Promise 的构造函数接收一个函数作为参数，该函数接受两个额
     
 
         <a href="/2019/01/30/20190130-8/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -449,7 +498,7 @@ Promise 的构造函数接收一个函数作为参数，该函数接受两个额
     
 
         <a href="/2019/01/30/20190130-7/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -487,7 +536,7 @@ Promise 的构造函数接收一个函数作为参数，该函数接受两个额
     
 
         <a href="/2019/01/30/20190130-6/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
     </div>
     
@@ -525,55 +574,8 @@ Promise 的构造函数接收一个函数作为参数，该函数接受两个额
     
 
         <a href="/2019/01/30/20190130-5/" class="post-more waves-effect waves-button">
-            Continue reading...
+            阅读全文…
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-20190130-4" class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-01-30 17:49:22" datetime="2019-01-30T09:49:22.000Z" itemprop="datePublished">2019-01-30</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/01/30/20190130-4/">js模块化</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        1.无模块化12&lt;script src="jquery.js"&gt;&lt;/script&gt;&lt;script src="jquery_scroller.js"&gt;&lt;/script&gt;
-缺点：1.污染全局作用域  2.依赖关系不明显
-2. commonJS规范最初应用于服务端前端webpack也对CommonJS原生支持
-每一个文件就是一个模块，内部定义的变量属...
-    
-
-        <a href="/2019/01/30/20190130-4/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
     </div>
     
 </article>
@@ -609,7 +611,7 @@ Promise 的构造函数接收一个函数作为参数，该函数接受两个额
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <!-- <span>footer.license</span> -->
+            <!-- <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span> -->
         </p>
     </div>
     <div class="bottom">

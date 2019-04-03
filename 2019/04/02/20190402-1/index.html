@@ -14,25 +14,25 @@
     
     
     
-    <title>base64与file格式图片转换 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <title>js变量提升 | 希染 | 愿你走过半生，归来仍是少年</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="js">
-    <meta name="description" content="base64转file123456789101112131415function dataURLtoFile(dataurl, filename) &amp;#123;  //将base64转换为文件  var arr = dataurl.split(&quot;,&quot;),    mime = arr[0].match(/:(.*?);/)[1],    bstr = atob(arr[1]),    n = bst">
+    <meta name="description" content="变量进入作用域方式1.语言内置：所有的作用域都有 this 和 arguments2.形式参数：函数的形式参数会作为函数作用域的一部分3.函数声明: function a(){}4.变量声明：var a; 变量提升1234567891011121314151617181920function test1() &amp;#123;  a = 5;  console.log(a);  console.log(">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="base64与file格式图片转换">
-<meta property="og:url" content="http://huangXin1538.github.io/2019/03/26/20190326-1/index.html">
+<meta property="og:title" content="js变量提升">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/04/02/20190402-1/index.html">
 <meta property="og:site_name" content="希染">
-<meta property="og:description" content="base64转file123456789101112131415function dataURLtoFile(dataurl, filename) &amp;#123;  //将base64转换为文件  var arr = dataurl.split(&quot;,&quot;),    mime = arr[0].match(/:(.*?);/)[1],    bstr = atob(arr[1]),    n = bst">
+<meta property="og:description" content="变量进入作用域方式1.语言内置：所有的作用域都有 this 和 arguments2.形式参数：函数的形式参数会作为函数作用域的一部分3.函数声明: function a(){}4.变量声明：var a; 变量提升1234567891011121314151617181920function test1() &amp;#123;  a = 5;  console.log(a);  console.log(">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-29T03:55:43.756Z">
+<meta property="og:updated_time" content="2019-04-02T08:23:41.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="base64与file格式图片转换">
-<meta name="twitter:description" content="base64转file123456789101112131415function dataURLtoFile(dataurl, filename) &amp;#123;  //将base64转换为文件  var arr = dataurl.split(&quot;,&quot;),    mime = arr[0].match(/:(.*?);/)[1],    bstr = atob(arr[1]),    n = bst">
+<meta name="twitter:title" content="js变量提升">
+<meta name="twitter:description" content="变量进入作用域方式1.语言内置：所有的作用域都有 this 和 arguments2.形式参数：函数的形式参数会作为函数作用域的一部分3.函数声明: function a(){}4.变量声明：var a; 变量提升1234567891011121314151617181920function test1() &amp;#123;  a = 5;  console.log(a);  console.log(">
     
         <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
     
@@ -106,7 +106,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">base64与file格式图片转换</div>
+        <div class="flex-col header-title ellipsis">js变量提升</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -128,11 +128,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">base64与file格式图片转换</h1>
+        <h1 class="title">js变量提升</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-03-26T07:14:44.000Z" itemprop="datePublished" class="page-time">
-  2019-03-26
+                <time datetime="2019-04-02T08:10:29.000Z" itemprop="datePublished" class="page-time">
+  2019-04-02
 </time>
 
 
@@ -151,17 +151,17 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#base64转file"><span class="post-toc-number">1.</span> <span class="post-toc-text">base64转file</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#file转base64"><span class="post-toc-number">2.</span> <span class="post-toc-text">file转base64</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变量进入作用域方式"><span class="post-toc-number">1.</span> <span class="post-toc-text">变量进入作用域方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变量提升"><span class="post-toc-number">2.</span> <span class="post-toc-text">变量提升</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-20190326-1" class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-20190402-1" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">base64与file格式图片转换</h1>
+        <h1 class="post-card-title">js变量提升</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-03-26 15:14:44" datetime="2019-03-26T07:14:44.000Z" itemprop="datePublished">2019-03-26</time>
+            <time class="post-time" title="2019-04-02 16:10:29" datetime="2019-04-02T08:10:29.000Z" itemprop="datePublished">2019-04-02</time>
 
             
 
@@ -174,8 +174,8 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="base64转file"><a href="#base64转file" class="headerlink" title="base64转file"></a>base64转file</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURLtoFile</span>(<span class="params">dataurl, filename</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//将base64转换为文件</span></span><br><span class="line">  <span class="keyword">var</span> arr = dataurl.split(<span class="string">","</span>),</span><br><span class="line">    mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">    bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">    n = bstr.length,</span><br><span class="line">    u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">  <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">    u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], filename, &#123;</span><br><span class="line">    type: mime</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> file = dataURLtoFile(imgUrl, <span class="string">"img"</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="file转base64"><a href="#file转base64" class="headerlink" title="file转base64"></a>file转base64</h2><p>base64转blob,blob转file<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataURLtoBlob</span> (<span class="params">dataurl</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> arr = dataurl.split(<span class="string">','</span>),</span><br><span class="line">      mime = arr[<span class="number">0</span>].match(<span class="regexp">/:(.*?);/</span>)[<span class="number">1</span>],</span><br><span class="line">      bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">      n = bstr.length,</span><br><span class="line">      u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">  <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">      u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([u8arr], &#123; <span class="attr">type</span>: mime &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">    <span class="comment">//将blob转换为file</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blobToFile</span>:(<span class="params">theBlob, fileName</span>)</span>&#123;</span><br><span class="line">  theBlob.lastModifiedDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  theBlob.name = fileName;</span><br><span class="line">  <span class="keyword">return</span> theBlob;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="keyword">var</span> blob = dataURLtoBlob(base64Data);</span><br><span class="line"><span class="keyword">var</span> file = blobToFile(blob, imgName);</span><br></pre></td></tr></table></figure></p>
+            <h2 id="变量进入作用域方式"><a href="#变量进入作用域方式" class="headerlink" title="变量进入作用域方式"></a>变量进入作用域方式</h2><p>1.语言内置：所有的作用域都有 this 和 arguments<br>2.形式参数：函数的形式参数会作为函数作用域的一部分<br>3.函数声明: function a(){}<br>4.变量声明：var a;</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  a = <span class="number">5</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">window</span>.a);</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">test1();</span><br><span class="line">log依次为<span class="number">5</span>，<span class="literal">undefined</span>，<span class="number">10</span>；</span><br><span class="line"></span><br><span class="line">实际执行顺序</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">  a = <span class="number">5</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">window</span>.a);</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -184,7 +184,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-03-29T03:55:43.756Z" itemprop="dateUpdated">2019-03-29 11:55:43</time>
+    最后更新时间：<time datetime="2019-04-02T08:23:41.311Z" itemprop="dateUpdated">2019-04-02 16:23:41</time>
 </span><br>
 
 
@@ -220,7 +220,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/03/26/20190326-1/&title=《base64与file格式图片转换》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/02/20190402-1/&title=《js变量提升》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -230,22 +230,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/03/26/20190326-1/&title=《base64与file格式图片转换》 — 希染&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/02/20190402-1/&title=《js变量提升》 — 希染&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/03/26/20190326-1/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/02/20190402-1/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《base64与file格式图片转换》 — 希染&url=http://huangXin1538.github.io/2019/03/26/20190326-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js变量提升》 — 希染&url=http://huangXin1538.github.io/2019/04/02/20190402-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/03/26/20190326-1/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/02/20190402-1/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -268,18 +268,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2019/03/29/20190329-1/" id="post-prev" class="post-nav-link">
+      <a href="/2019/04/02/20190402-2/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">html5调起摄像头拍照</h4>
+        <h4 class="title">js闭包</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/03/15/20190315-6/" id="post-next" class="post-nav-link">
+      <a href="/2019/03/29/20190329-1/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">export 和 module export</h4>
+        <h4 class="title">html5调起摄像头拍照</h4>
       </a>
     </div>
   
@@ -378,7 +378,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/03/26/20190326-1/&title=《base64与file格式图片转换》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/02/20190402-1/&title=《js变量提升》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -388,22 +388,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/03/26/20190326-1/&title=《base64与file格式图片转换》 — 希染&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/02/20190402-1/&title=《js变量提升》 — 希染&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/03/26/20190326-1/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/02/20190402-1/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《base64与file格式图片转换》 — 希染&url=http://huangXin1538.github.io/2019/03/26/20190326-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js变量提升》 — 希染&url=http://huangXin1538.github.io/2019/04/02/20190402-1/&via=http://huangXin1538.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/03/26/20190326-1/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/02/20190402-1/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -414,7 +414,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aO47jMBAFQN//0t50gIXs95pWILIYGQN5xHLQ6N/rFZ/3n/P3L1ef/38+/5+fv7V0MDAwHst4fzzJK5MXXz2Z/ECf74aBgXEO4+rFyTPrQTMJ5V/ujIGBgRGH1DZoJmEdAwMDo2W0Be3nNHQl0GNgYJzGSEJhGxZnsNtrcQwMjAcyflVk3vH5lvkGBgbGoxjv8rQDy3acObwVBgbG1oy2lZYA2oWMnw1EMTAwDmbkTbH80rMitsheMTAwNmKsNOjbBDEPtXXLDwMDY2vGfYXoysByNnLAwMDYlTErGmfrX+ud/MubYGBgbM3Ig+asKZakg7MZZV2XY2BgPJyRvCAfAOTBd33x4nIwgIGBcQAjSQfzVn7ebpuloRgYGKcx8vbZrHHWFqtFgoiBgbEpYyWly5PI2QJHvg6CgYFxAiMvWduW2XrAXdoZwcDAOICxXuLmsbFdtsDAwDiHkbTP8tPC2qQzKmUxMDAOY7St/zZcri98vGa7ZhgYGI9lzPpX+eLF7e/CwMA4hjEbCbSrFXmiWTT7MDAwDmMkpWO7MFHvgMQ8DAyMvRnv8iTJXx6482Hnl2CNgYGxNWPW9M/HCcXCxMIAFQMD4wTGSpBNAHnROyuVMTAwzmEUVW+cqOVhui1iv7TbMDAwMOLFiJXxQP3DYWBgYJTh9b4RQjTCxMDA2JTRrlm0xecsyObrFxgYGHsz2hWH/NL5atcPdkYwMDD2ZPwDQuM39Tw4DbUAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQZKDMAwEwPz/0+w1VRuTGZscwM0plbDg9kErS3q94ut4u0bfv/96/nl0/+gtl10YGBi3ZRyn1/+l5LzzO/MtOF8bBgbGPozREpNljV7cRsvkvcPvMTAwME4Xmid857w20GNgYGDkh8w8XCYkDAwMjJVDbLvctvSWh2wMDIzdGFcdMn/x+Sf9DQwMjFsxjvJqD58rCWWxKgwMjEczVlqYc2MWCTtpkX5YFQYGxmaMpOjWtjPb1kKSIGJgYOzDaA+x622DNhHMNxQDA+PZjLlHt09oj751wMXAwHgoIz+4rgTotvFZp4wYGBgbMFbKannwbTcIAwMDIw98eZieazbMDV58SA0xMDA2Y7QDE/kQRrv0KGRjYGBsxshL/3PjFHMb9CVBxMDAeDSjPTrmIxR5IM5DbV3zw8DAuDljLu276v655BIDA2M3RlvEX0/X8lBeh2wMDIwNGHmi1r7g2rGw4T0YGBiPZrTtgavGKfL2JwYGBkZb5EqSxfb+/K+GT8PAwNiGMRdkV56wUj3DwMDYh9GWz1ZCaj0wMVfaw8DAeBDjKK+2DJc3ANoRtFe+TxgYGDdnrAe7tiW5cuida3ZiYGA8g5EH2blhi5UxMgwMDIzkcSvLzQN0/h+gaGFiYGBsz/hhWX9ugAMDAwOjfGibCObfY2Bg7MyYK5wlgbg9EueltwvO4hgYGDdhzAXlvFWQb0S7EgwMjA0Yf0k/rWMC2woqAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
