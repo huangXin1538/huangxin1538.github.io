@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>js字符串方法 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="charAt()返回指定索引位置的字符 charCodeAt()返回指定索引位置的Unicode值 concat()连接两个或多个字符串，返回连接后的字符串 fromCharCode()将Unicode转换为字符串 indexOf()返回字符串中指定字符第一次出现的位置 lastIndexOf()最后一次出现的位置 localeCompare()用本地特定的顺序来比较两个字符串 match()找到">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js字符串方法">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/04/09/js字符串方法/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="charAt()返回指定索引位置的字符 charCodeAt()返回指定索引位置的Unicode值 concat()连接两个或多个字符串，返回连接后的字符串 fromCharCode()将Unicode转换为字符串 indexOf()返回字符串中指定字符第一次出现的位置 lastIndexOf()最后一次出现的位置 localeCompare()用本地特定的顺序来比较两个字符串 match()找到">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-09T09:37:25.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js字符串方法">
+<meta name="twitter:description" content="charAt()返回指定索引位置的字符 charCodeAt()返回指定索引位置的Unicode值 concat()连接两个或多个字符串，返回连接后的字符串 fromCharCode()将Unicode转换为字符串 indexOf()返回字符串中指定字符第一次出现的位置 lastIndexOf()最后一次出现的位置 localeCompare()用本地特定的顺序来比较两个字符串 match()找到">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js字符串方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js字符串方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-09T09:18:17.000Z" itemprop="datePublished" class="page-time">
+  2019-04-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#charAt"><span class="post-toc-number">1.</span> <span class="post-toc-text">charAt()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#charCodeAt"><span class="post-toc-number">2.</span> <span class="post-toc-text">charCodeAt()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#concat"><span class="post-toc-number">3.</span> <span class="post-toc-text">concat()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fromCharCode"><span class="post-toc-number">4.</span> <span class="post-toc-text">fromCharCode()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#indexOf"><span class="post-toc-number">5.</span> <span class="post-toc-text">indexOf()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lastIndexOf"><span class="post-toc-number">6.</span> <span class="post-toc-text">lastIndexOf()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#localeCompare"><span class="post-toc-number">7.</span> <span class="post-toc-text">localeCompare()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#match"><span class="post-toc-number">8.</span> <span class="post-toc-text">match()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#replace"><span class="post-toc-number">9.</span> <span class="post-toc-text">replace()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#search"><span class="post-toc-number">10.</span> <span class="post-toc-text">search()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#slice"><span class="post-toc-number">11.</span> <span class="post-toc-text">slice()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#split-分隔符"><span class="post-toc-number">12.</span> <span class="post-toc-text">split(分隔符)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#substr-start-length"><span class="post-toc-number">13.</span> <span class="post-toc-text">substr(start,length)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#substring-from-to"><span class="post-toc-number">14.</span> <span class="post-toc-text">substring(from,to)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toLowerCase"><span class="post-toc-number">15.</span> <span class="post-toc-text">toLowerCase()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toUpperCase"><span class="post-toc-number">16.</span> <span class="post-toc-text">toUpperCase()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#trim"><span class="post-toc-number">17.</span> <span class="post-toc-text">trim()</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js字符串方法" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js字符串方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-09 17:18:17" datetime="2019-04-09T09:18:17.000Z" itemprop="datePublished">2019-04-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="charAt"><a href="#charAt" class="headerlink" title="charAt()"></a>charAt()</h2><p>返回指定索引位置的字符</p>
+<h2 id="charCodeAt"><a href="#charCodeAt" class="headerlink" title="charCodeAt()"></a>charCodeAt()</h2><p>返回指定索引位置的Unicode值</p>
+<h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>连接两个或多个字符串，返回连接后的字符串</p>
+<h2 id="fromCharCode"><a href="#fromCharCode" class="headerlink" title="fromCharCode()"></a>fromCharCode()</h2><p>将Unicode转换为字符串</p>
+<h2 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h2><p>返回字符串中指定字符第一次出现的位置</p>
+<h2 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h2><p>最后一次出现的位置</p>
+<h2 id="localeCompare"><a href="#localeCompare" class="headerlink" title="localeCompare()"></a>localeCompare()</h2><p>用本地特定的顺序来比较两个字符串</p>
+<h2 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h2><p>找到一个或多个正则表达式的匹配</p>
+<h2 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h2><p>替换与正则表达式匹配的字符串</p>
+<h2 id="search"><a href="#search" class="headerlink" title="search()"></a>search()</h2><p>检索与正则表达式匹配的值</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>提取字符串的片段，并在新的字符串中返回被提取的部分</p>
+<h2 id="split-分隔符"><a href="#split-分隔符" class="headerlink" title="split(分隔符)"></a>split(分隔符)</h2><p>按分隔符把字符串分割为数组</p>
+<h2 id="substr-start-length"><a href="#substr-start-length" class="headerlink" title="substr(start,length)"></a>substr(start,length)</h2><p>从起始索引号提取字符串中指定数目的字符</p>
+<h2 id="substring-from-to"><a href="#substring-from-to" class="headerlink" title="substring(from,to)"></a>substring(from,to)</h2><p>提取字符串中两个指定的索引号之间的字符</p>
+<h2 id="toLowerCase"><a href="#toLowerCase" class="headerlink" title="toLowerCase()"></a>toLowerCase()</h2><p>‘ABC’.toLocaleLowerCase() //abc<br>转为小写,不会改变原字符串</p>
+<h2 id="toUpperCase"><a href="#toUpperCase" class="headerlink" title="toUpperCase()"></a>toUpperCase()</h2><p>‘abc’.toLocaleLowerCase() //ABC<br>转为大写,不会改变原字符串</p>
+<h2 id="trim"><a href="#trim" class="headerlink" title="trim()"></a>trim()</h2><p>删除字符串首尾空格<br>str.trim();<br>不会改变原字符串</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-09T09:37:25.023Z" itemprop="dateUpdated">2019-04-09 17:37:25</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&title=《js字符串方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&title=《js字符串方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/09/js字符串方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js字符串方法》 — 希染&url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/09/js数组方法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">js数组方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&title=《js字符串方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&title=《js字符串方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/09/js字符串方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js字符串方法》 — 希染&url=http://huangXin1538.github.io/2019/04/09/js字符串方法/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/09/js字符串方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNUlEQVR42u3ay26DUAxF0fz/T1Opo0oU2Me+qRrfzSgiBFgZWH69Xvg4vo/z56szP8+ff3t1t/O3iw8ZMmR8LOO4Pfg197AUEz9XhgwZGzBIkL0PheTxnXD88M4yZMiQEb7E/fX8WxkyZMioMXjiyBn875MhQ8bODFLEdnid6xfX4jJkyPhARmcw8O7PfzTfkCFDxj9mHOFBiljSnuPlMXorGTJkjGbUWl185SK9Gwm1QYYrQ4aMEYxaqCW5WT+ABmMJGTJkbMDgIbXW4u+PEB4GpTJkyBjNIMlZejtS7qZ3DpJXGTJkjGbwQLl2mSwdBgRjAxkyZAxi1IrYTuF6z142GJAhQ8YIRq31z4tS/heQUejllTJkyNiGQR6Zro7xNllauF4GXBkyZAxldAaKtdCZrpc9XClDhozRDB46ayF47epq/A4yZMgYxCBhcdXAgKd9cYopQ4aM0Qw+XCSP6SxS1NZeZciQMZtBwitP7NJylyeLD8sWMmTIGM1Y1poPh6C80ZayZciQMY/RacrX0sr+8usvZ2TIkLEZo7ZIWlu/4OVuMcOVIUPGCEZn6aEzMAgWJsKgLEOGjHmMdwRWErh5aEapqgwZMkYzamGuNs5M78NXx2TIkLEDIx0GdAYJnZHAQ6iVIUPGBoxOmz5uiuGFD56GypAhQwYpLFeNFoojVRkyZMgIE7W0ucaD70MRK0OGjNGMtBDlvy2memHolyFDxmxG52GkDddZ3UhDuQwZMsYxvgA9EXDmKcOeVQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

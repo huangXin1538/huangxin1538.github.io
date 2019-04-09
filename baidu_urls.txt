@@ -1,3 +1,6 @@
+http://huangXin1538.github.io/2019/04/09/js字符串方法/
+http://huangXin1538.github.io/2019/04/09/js数组方法/
+http://huangXin1538.github.io/2019/04/09/js数据类型/
 http://huangXin1538.github.io/2019/04/02/20190402-2/
 http://huangXin1538.github.io/2019/04/02/20190402-1/
 http://huangXin1538.github.io/2019/03/29/20190329-1/
@@ -19,7 +22,6 @@ http://huangXin1538.github.io/2019/01/30/20190130-7/
 http://huangXin1538.github.io/2019/01/30/20190130-6/
 http://huangXin1538.github.io/2019/01/30/20190130-5/
 http://huangXin1538.github.io/2019/01/30/20190130-4/
-http://huangXin1538.github.io/2019/01/30/20190130-3/
 http://huangXin1538.github.io/2019/01/30/20190130-2/
 http://huangXin1538.github.io/2019/01/30/20190130-1/
 http://huangXin1538.github.io/2018/12/06/20181206-1/

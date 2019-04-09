@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>js数组方法 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="concat 合并arr1.concat(arr2) entries该方法返回一个新的Array Iterator（迭代器）对象，该对象包含数组中每个索引对应的键/值对123456789101112var a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]var iterator = a.entries()console.log(iterator) // Array Iterator&amp;#123;&amp;#125;con">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js数组方法">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/04/09/js数组方法/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="concat 合并arr1.concat(arr2) entries该方法返回一个新的Array Iterator（迭代器）对象，该对象包含数组中每个索引对应的键/值对123456789101112var a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]var iterator = a.entries()console.log(iterator) // Array Iterator&amp;#123;&amp;#125;con">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-09T08:52:03.827Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js数组方法">
+<meta name="twitter:description" content="concat 合并arr1.concat(arr2) entries该方法返回一个新的Array Iterator（迭代器）对象，该对象包含数组中每个索引对应的键/值对123456789101112var a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]var iterator = a.entries()console.log(iterator) // Array Iterator&amp;#123;&amp;#125;con">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js数组方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js数组方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-09T06:43:17.000Z" itemprop="datePublished" class="page-time">
+  2019-04-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#concat-合并"><span class="post-toc-number">1.</span> <span class="post-toc-text">concat 合并</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#entries"><span class="post-toc-number">2.</span> <span class="post-toc-text">entries</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#every"><span class="post-toc-number">3.</span> <span class="post-toc-text">every()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fill"><span class="post-toc-number">4.</span> <span class="post-toc-text">fill()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#filter"><span class="post-toc-number">5.</span> <span class="post-toc-text">filter()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#find"><span class="post-toc-number">6.</span> <span class="post-toc-text">find()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#findIndex"><span class="post-toc-number">7.</span> <span class="post-toc-text">findIndex()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#forEach"><span class="post-toc-number">8.</span> <span class="post-toc-text">forEach()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#includes"><span class="post-toc-number">9.</span> <span class="post-toc-text">includes()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#indexOf"><span class="post-toc-number">10.</span> <span class="post-toc-text">indexOf()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#join"><span class="post-toc-number">11.</span> <span class="post-toc-text">join()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#keys"><span class="post-toc-number">12.</span> <span class="post-toc-text">keys()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lastIndexOf"><span class="post-toc-number">13.</span> <span class="post-toc-text">lastIndexOf()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#map"><span class="post-toc-number">14.</span> <span class="post-toc-text">map()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pop"><span class="post-toc-number">15.</span> <span class="post-toc-text">pop()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#push"><span class="post-toc-number">16.</span> <span class="post-toc-text">push()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reduce"><span class="post-toc-number">17.</span> <span class="post-toc-text">reduce()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reduceRight"><span class="post-toc-number">18.</span> <span class="post-toc-text">reduceRight()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reverse"><span class="post-toc-number">19.</span> <span class="post-toc-text">reverse()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#shift"><span class="post-toc-number">20.</span> <span class="post-toc-text">shift()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#splice"><span class="post-toc-number">21.</span> <span class="post-toc-text">splice()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#some"><span class="post-toc-number">22.</span> <span class="post-toc-text">some()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sort"><span class="post-toc-number">23.</span> <span class="post-toc-text">sort()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#slice"><span class="post-toc-number">24.</span> <span class="post-toc-text">slice()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toString-NaN"><span class="post-toc-number">25.</span> <span class="post-toc-text">toString()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#unshift"><span class="post-toc-number">26.</span> <span class="post-toc-text">unshift()</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js数组方法" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js数组方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-09 14:43:17" datetime="2019-04-09T06:43:17.000Z" itemprop="datePublished">2019-04-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="concat-合并"><a href="#concat-合并" class="headerlink" title="concat 合并"></a>concat 合并</h2><p>arr1.concat(arr2)</p>
+<h2 id="entries"><a href="#entries" class="headerlink" title="entries"></a>entries</h2><p>该方法返回一个新的Array Iterator（迭代器）对象，该对象包含数组中每个索引对应的键/值对<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> iterator = a.entries()</span><br><span class="line"><span class="built_in">console</span>.log(iterator) <span class="comment">// Array Iterator&#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next().value) <span class="comment">// [0,'a']</span></span><br><span class="line">或者</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> a <span class="keyword">of</span> iterator)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//[0,'a']</span></span><br><span class="line"><span class="comment">//[1,'b']</span></span><br><span class="line"><span class="comment">//[2,'c']</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h2><p>array.every(function(currentValue,index,arr), thisValue)<br>检测数组中每个元素是否符合筛选条件；<br>参数1：function(每一个元素) 必传<br>    2：thisValue 可选<br>返回 true/false</p>
+<h2 id="fill"><a href="#fill" class="headerlink" title="fill()"></a>fill()</h2><p>array.fill(value, start, end)<br>将数组中元素都替换成固定值</p>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h2><p>过滤出符合条件的元素，组成新数组并返回<br>array.filter(function(currentValue,index,arr), thisValue)</p>
+<p>1.不会对空数组检测<br>2.不会改变原数组</p>
+<h2 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h2><p>获取数组中第一个符合条件的值<br>array.find(function(currentValue, index, arr),thisValue)</p>
+<p>找不到返回undefined</p>
+<h2 id="findIndex"><a href="#findIndex" class="headerlink" title="findIndex()"></a>findIndex()</h2><p>获取数组中第一个符合条件的值，返回所在位置<br>array.findIndex(function(currentValue, index, arr),thisValue)<br>找不到返回-1</p>
+<h2 id="forEach"><a href="#forEach" class="headerlink" title="forEach()"></a>forEach()</h2><p>遍历数组<br>array.forEach(function(currentValue, index, arr), thisValue)</p>
+<h2 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h2><p>判断数组中是否包含一个指定的值<br>arr.includes(searchElement, fromIndex)</p>
+<p>返回true/false</p>
+<h2 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h2><p>array.indexOf(item,start)<br>返回数组中某个指定元素的位置<br>找不到返回-1</p>
+<h2 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h2><p>array.join(分隔符); //不传就是没有分隔<br>数组中所有元素放入一个字符串并返回</p>
+<h2 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h2><p>从数组创建一个包含数组键的可迭代对象<br>array.keys();<br>返回： Array Iterator<br>for(let a of array.keys()){<br>    console.log(a)<br>}<br>log出索引值</p>
+<h2 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h2><p>获取数组中第一个符合条件的值，返回所在位置，倒序<br>array.lastIndexOf();</p>
+<h2 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h2><p>返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值<br>array.map(function(currentValue,index,arr), thisValue)</p>
+<h2 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h2><p>删除数组中最后一个元素，并返回<br>array.pop();</p>
+<h2 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h2><p>向数组末添加一个或多个元素，返回新长度<br>array.push(newelement1,newelement2,….,newelementX)</p>
+<h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h2><p>接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值<br>array.reduce(function(total, currentValue, currentIndex, arr), initialValue)<br>高阶函数，可用于compose</p>
+<h2 id="reduceRight"><a href="#reduceRight" class="headerlink" title="reduceRight()"></a>reduceRight()</h2><p>从右边开始reduce</p>
+<h2 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h2><p>翻转数组并返回</p>
+<h2 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h2><p>删除数组中第一个元素，并返回该元素<br>会改变数组长度</p>
+<h2 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h2><p>array.splice(index,howmany,item1,…..,itemX)<br>按照指定位置，删除数组中的元素；第三个以后参数，可以在删除位置添加元素</p>
+<h2 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h2><p>用法同every()，区别为every：每一项都为true，才返回true;some: 任一项为true，就返回true</p>
+<h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><p>array.sort(sortfunction(a,b))<br>对数组进行排序,a,b为前后两个元素，return a&gt;b;升序，return a&lt; b 降序；</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>array.slice(start,end);<br>从已有数组中选出指定元素，并放进一个数组返回<br>不会改变原数组</p>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h2><p>[0,1].toString = ‘0,1’</p>
+<h2 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h2><p>想数组开头添加一个或多个元素，返回新长度<br>arrayObject.unshift(newelement1,newelement2,….,newelementX)</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-04-09T08:52:03.827Z" itemprop="dateUpdated">2019-04-09 16:52:03</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/09/js数组方法/&title=《js数组方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/09/js数组方法/&title=《js数组方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/09/js数组方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js数组方法》 — 希染&url=http://huangXin1538.github.io/2019/04/09/js数组方法/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/09/js数组方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/09/js字符串方法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js字符串方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/09/js数据类型/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">js数据类型</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/04/09/js数组方法/&title=《js数组方法》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/04/09/js数组方法/&title=《js数组方法》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/04/09/js数组方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js数组方法》 — 希染&url=http://huangXin1538.github.io/2019/04/09/js数组方法/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/04/09/js数组方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aS46DMBBF0ex/02TSg0gR7vvKplt2XY9QAMNh4NTHrxce18f4/GV85fddd9ffPWXxkCFDxraMazjGDP7I8fV3H4i8mwwZMvow0qnneXz+8b0yZMiQQaZeFTim88iQIUMGefV5/L8tuDJkyNiQQZbC8dQkBCRnH8/FZciQsSEjfZW/PH6kvyFDhoytGFc40sQ1XS6v0pAhQ8bZDL7APVHuH4eA8fvIkCHjaAZvRqZn+TYL3iqI93TIkCHjCAYvsc0/kiy16fvIkCGjA4NvoZi5kqfBPEyUIUNGHwYvyq9tN/LFnUSAMmTI6MMgD0vLZPwunuhO7emQIUPGtgySIvKSXC3d5bDb0FCGDBmHMmopa1rcT8PNqXKbDBkyDmXUpl61ENc+FmpqypAh4wgG30LBt0qQlgBPp+NvL0OGjIMYtdd9YpGtHf/8IkOGjAYMXhTjbcVaa5OnqTJkyOjDSBuK5CzPlecbojJkyOjG4MEcL9aTwlzanIjLbTJkyGjA4IsmL5bxcJMfy5Ahow+DB3C1khwfaYItQ4aMDgy+3aHWvFyF/CU0lCFDxnGMKxxkKSTLND+LmqwyZMg4mjEfqKWNhLXpawyTIUPGtoyZII9fU9tIgQptMmTIaMMYF/R50T8twKX/AGizhQwZMmSEGykINW18FieSIUNGS0a6pYynu3FzVIYMGQ0YtbSz1kgI+qu4eCdDhoyzGTx15JHYE+krT61lyJBxEOMNZo1gvvDM+JMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
