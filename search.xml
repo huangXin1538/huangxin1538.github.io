@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[重绘和回流]]></title>
+    <url>%2F2019%2F04%2F17%2F%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81%2F</url>
+    <content type="text"><![CDATA[重绘当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此损耗较少 常见重绘操作有：1.改变元素颜色2.改变元素背景色3.。。。。。。 回流（重排）当元素的尺寸、结构或者触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新计算，计算后还需要重新布局页面，因此是较重的操作。 常见回流操作有：1.页面初次渲染2.浏览器窗口大小改变3.元素尺寸、位置、内容发生改变4.元素字体大小变化5.添加或删除可见的DOM6.激活css伪类（：hover）7.。。。。。。 总结回流必定触发重绘，重绘不一定触发回流。回流开销较大。 如何避免大量使用重绘和回流 1.避免频繁操作样式，可汇总后统一修改2.尽量使用class进行样式修改，而不是直接插入样式3.减少dom操作。可使用字符串一次插入]]></content>
+      <tags>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js节流和防抖]]></title>
+    <url>%2F2019%2F04%2F17%2F%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96%2F</url>
+    <content type="text"><![CDATA[意义在进行窗口的 resize、scroll、输入框内容验证、touchmove 等操作时，如果事件处理函数调用的频率无限制，会加重浏览器负担，甚至卡死。导致用户体验很糟糕。此时可以采用 debounce（防抖）和 throttle（节流）的方式减少调用频率，同时不影响实际效果 防抖防抖：当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次。如果设定的事件到来之前，又触发了事件，就重新开始延时例： 12345678910111213function debounce(fn, wait) &#123; var timeout = null; return function() &#123; if (timeout !== null) clearTimeout(timeout); timeout = setTimeout(fn, wait); &#125;;&#125;// 处理函数function handle() &#123; console.log(Math.random());&#125;// 滚动事件window.addEventListener("scroll", debounce(handle, 1000)); 节流当持续触发事件时，保证一定时间段内只调用一次事件处理函数。例如。当持续触发 scroll 事件时，并不立即执行回调，每隔 1s 才会执行一次 1.时间戳方式实现12345678910111213141516var throttle = function(func, delay) &#123; var prev = Date.now(); return function() &#123; var context = this; var args = arguments; var now = Date.now(); if (now - prev &gt;= delay) &#123; func.apply(context, args); prev = Date.now(); &#125; &#125;;&#125;;function handle() &#123; console.log(Math.random());&#125;window.addEventListener("scroll", throttle(handle, 1000)); 2.定时器方式实现1234567891011121314151617var throttle = function(func, delay) &#123; var timer = null; return function() &#123; var context = this; var args = arguments; if (!timer) &#123; timer = setTimeout(function() &#123; func.apply(context, args); timer = null; &#125;, delay); &#125; &#125;;&#125;;function handle() &#123; console.log(Math.random());&#125;window.addEventListener("scroll", throttle(handle, 1000)); 总结函数防抖：讲几次操作合为一次操作进行。原理是维护一个定时器，规定在delay时间后触发，但是在delay时间内再次触发，就会取消之前的定时器重新设置。这样一来，只有最后一次才能触发 函数节流：使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数 区别： 函数节流不管事件触发多频繁，都会保证在规定时间内一定会触发一次函数 防抖只是在最后一次事件后才触发一次函数 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次ajax，而不是在用户停下时才去请求。这样的场景适合用节流 页面缩放修改rem设定，适合用防抖]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[js字符串方法]]></title>
     <url>%2F2019%2F04%2F09%2Fjs%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[charAt()返回指定索引位置的字符 charCodeAt()返回指定索引位置的Unicode值 concat()连接两个或多个字符串，返回连接后的字符串 fromCharCode()将Unicode转换为字符串 indexOf()返回字符串中指定字符第一次出现的位置 lastIndexOf()最后一次出现的位置 localeCompare()用本地特定的顺序来比较两个字符串 match()找到一个或多个正则表达式的匹配 replace()替换与正则表达式匹配的字符串 search()检索与正则表达式匹配的值 slice()提取字符串的片段，并在新的字符串中返回被提取的部分 split(分隔符)按分隔符把字符串分割为数组 substr(start,length)从起始索引号提取字符串中指定数目的字符 substring(from,to)提取字符串中两个指定的索引号之间的字符 toLowerCase()‘ABC’.toLocaleLowerCase() //abc转为小写,不会改变原字符串 toUpperCase()‘abc’.toLocaleLowerCase() //ABC转为大写,不会改变原字符串 trim()删除字符串首尾空格str.trim();不会改变原字符串]]></content>
