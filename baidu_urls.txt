@@ -1,3 +1,6 @@
+http://huangXin1538.github.io/2019/05/21/遇到过的问题/
+http://huangXin1538.github.io/2019/05/14/js数组去重方式/
+http://huangXin1538.github.io/2019/04/18/es6解构赋值/
 http://huangXin1538.github.io/2019/04/17/重绘和回流/
 http://huangXin1538.github.io/2019/04/17/节流和防抖/
 http://huangXin1538.github.io/2019/04/09/js字符串方法/

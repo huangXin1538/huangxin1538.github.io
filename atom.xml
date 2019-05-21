@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://huangXin1538.github.io/"/>
-  <updated>2019-04-17T10:03:50.412Z</updated>
+  <updated>2019-05-21T06:29:11.942Z</updated>
   <id>http://huangXin1538.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>遇到过的问题</title>
+    <link href="http://huangXin1538.github.io/2019/05/21/%E9%81%87%E5%88%B0%E8%BF%87%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://huangXin1538.github.io/2019/05/21/遇到过的问题/</id>
+    <published>2019-05-21T06:25:35.000Z</published>
+    <updated>2019-05-21T06:29:11.942Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现"><a href="#1-自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现" class="headerlink" title="1.自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现"></a>1.自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现</h2><p>原因：切屏时，视频自动暂停，触发了onpause回调，导致播放按钮出现；返回时，视频自动继续播放，没有走按钮的点击事件<br>解决：添加视频onplay监听，如果视频播放，就隐藏播放按钮</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现&quot;&gt;&lt;a href=&quot;#1-自定义视频播放按钮，播放后设置播放按钮隐藏，但是切屏后返回，按钮又出现&quot; class=&quot;headerlink&quot; title=&quot;1.自定义视频播放按钮，播放后设置播
+      
+    
+    </summary>
+    
+    
+      <category term="bug" scheme="http://huangXin1538.github.io/tags/bug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js数组去重方式</title>
+    <link href="http://huangXin1538.github.io/2019/05/14/js%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%96%B9%E5%BC%8F/"/>
+    <id>http://huangXin1538.github.io/2019/05/14/js数组去重方式/</id>
+    <published>2019-05-14T09:54:17.000Z</published>
+    <updated>2019-05-14T09:59:25.773Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-es6中"><a href="#1-es6中" class="headerlink" title="1.es6中"></a>1.es6中</h3><p>Set：数据结构，类似数组，成员唯一<br>…：（展开/剩余）运算符，展开数组和对象；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">0</span>, ...a, <span class="number">4</span>]; <span class="comment">// [0,1,2,3,4]</span></span><br><span class="line"><span class="comment">//剩余</span></span><br><span class="line"><span class="number">1</span>：</span><br><span class="line">  <span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">let</span> [b, ...c] = a;</span><br><span class="line">  <span class="comment">// b = 1; c = [2,3]</span></span><br><span class="line"><span class="number">2</span>：</span><br><span class="line">  <span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">let</span> [b, ...[c,d,e]] = a;</span><br><span class="line">  b; <span class="comment">// 1</span></span><br><span class="line">  c; <span class="comment">// 2</span></span><br><span class="line">  d; <span class="comment">// 3</span></span><br><span class="line">  e; <span class="comment">// undefined</span></span><br><span class="line"><span class="number">3</span>：</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, ...rest</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(rest); <span class="comment">// [2,3]</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure></p><p>数组去重<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a = [...new <span class="built_in">Set</span>(a)];</span><br><span class="line"><span class="comment">// a = [1,2];</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-es6中&quot;&gt;&lt;a href=&quot;#1-es6中&quot; class=&quot;headerlink&quot; title=&quot;1.es6中&quot;&gt;&lt;/a&gt;1.es6中&lt;/h3&gt;&lt;p&gt;Set：数据结构，类似数组，成员唯一&lt;br&gt;…：（展开/剩余）运算符，展开数组和对象；&lt;br&gt;&lt;figure
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>es6解构赋值</title>
+    <link href="http://huangXin1538.github.io/2019/04/18/es6%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/"/>
+    <id>http://huangXin1538.github.io/2019/04/18/es6解构赋值/</id>
+    <published>2019-04-18T03:56:41.000Z</published>
+    <updated>2019-05-14T10:14:08.302Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本用法：es6允许按照一定模式，从对象和数组中提取值，对变量进行赋值，被称为解构赋值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// a=1;b=2;c=3</span></span><br></pre></td></tr></table></figure><p>只要等号两边的模式相同，左边的变量就会被赋予对应的值</p><p>Set 结构，也可以使用数组的解构赋值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x, y, z] = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);</span><br><span class="line">x <span class="comment">// "a"</span></span><br></pre></td></tr></table></figure></p><p>注意点：<br>（1）如果要将一个已经声明的变量用于解构赋值，必须非常小心。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误的写法</span></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="comment">// SyntaxError: syntax error</span></span><br></pre></td></tr></table></figure></p><p> JavaScript 引擎会将{x}理解成一个代码块，从而发生语法错误<br>（2）解构赋值允许等号左边的模式之中，不放置任何变量名。因此，可以写出非常古怪的赋值表达式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(&#123;&#125; = [<span class="literal">true</span>, <span class="literal">false</span>]);</span><br><span class="line">(&#123;&#125; = <span class="string">'abc'</span>);</span><br><span class="line">(&#123;&#125; = []);</span><br></pre></td></tr></table></figure></p><p>上面的表达式虽然毫无意义，但是语法是合法的，可以执行。<br>（3）由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="number">0</span> : first, [arr.length - <span class="number">1</span>] : last&#125; = arr;</span><br><span class="line">first <span class="comment">// 1</span></span><br><span class="line">last <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;基本用法：es6允许按照一定模式，从对象和数组中提取值，对变量进行赋值，被称为解构赋值&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/spa
+      
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="http://huangXin1538.github.io/tags/es6/"/>
+    
+  </entry>
   
   <entry>
     <title>重绘和回流</title>
@@ -383,77 +451,6 @@
     
     
       <category term="vue" scheme="http://huangXin1538.github.io/tags/vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>flex兼容</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-12/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-12/</id>
-    <published>2019-01-30T09:49:51.000Z</published>
-    <updated>2019-03-04T01:55:29.444Z</updated>
-    
-    <content type="html"><![CDATA[<p>###<br>旧版本dispaly: box;，过渡版本dispaly: flex box;，以及现在的标准版本display: flex</p><p>Android<br>2.3 开始就支持旧版本 display:-webkit-box;<br>4.4 开始支持标准版本 display: flex;</p><p>IOS<br>6.1 开始支持旧版本 display:-webkit-box;<br>7.1 开始支持标准版本display: flex;</p><p>PC<br>ie10开始支持，但是IE10的是-ms形式的。</p><p>###</p><p>###<br>写法<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box; <span class="comment">/* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */</span></span><br><span class="line">  <span class="attribute">display</span>: -moz-box; <span class="comment">/* 老版本语法: Firefox (buggy) */</span></span><br><span class="line">  <span class="attribute">display</span>: -ms-flexbox; <span class="comment">/* 混合版本语法: IE 10 */</span></span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex; <span class="comment">/* 新版本语法: Chrome 21+ */</span></span><br><span class="line">  <span class="attribute">display</span>: flex; <span class="comment">/* 新版本语法: Opera 12.1, Firefox 22+ */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.flex-1</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-flex</span>: <span class="number">1</span>; <span class="comment">/* Chrome */</span></span><br><span class="line">  <span class="attribute">-ms-flex</span>: <span class="number">1</span>; <span class="comment">/* IE 10 */</span></span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>; <span class="comment">/* NEW, Spec - Opera 12.1, Firefox 20+ */</span></span><br><span class="line">  <span class="attribute">-webkit-box-flex</span>: <span class="number">1</span>; <span class="comment">/* OLD - iOS 6-, Safari 3.1-6 */</span></span><br><span class="line">  <span class="attribute">-moz-box-flex</span>: <span class="number">1</span>; <span class="comment">/* OLD - Firefox 19- */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.flex-v</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">  <span class="attribute">-webkit-flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">-ms-flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.flex-align-center</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-align</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-align-items</span>: center;</span><br><span class="line">  <span class="attribute">-ms-flex-align</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.flex-pack-center</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-pack</span>: center;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: center;</span><br><span class="line">  <span class="attribute">-ms-flex-pack</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.flex-pack-justify</span> &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-pack</span>: justify;</span><br><span class="line">  <span class="attribute">-webkit-justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">-ms-flex-pack</span>: justify;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.flex-pack-around</span> &#123;</span><br><span class="line">　　<span class="attribute">-webkit-box-pack</span>: center;</span><br><span class="line">　　<span class="attribute">-webkit-justify-content</span>: space-around;</span><br><span class="line">　　<span class="attribute">-ms-flex-pack</span>: center;</span><br><span class="line">　　<span class="attribute">justify-content</span>: space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>兼容性：ios 4+、android 2.3+、winphone8+</p><p>###</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;###&lt;br&gt;旧版本dispaly: box;，过渡版本dispaly: flex box;，以及现在的标准版本display: flex&lt;/p&gt;
-&lt;p&gt;Android&lt;br&gt;2.3 开始就支持旧版本 display:-webkit-box;&lt;br&gt;4.4 开始支持标准版本
-      
-    
-    </summary>
-    
-    
-      <category term="css" scheme="http://huangXin1538.github.io/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js实现面向对象</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-11/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-11/</id>
-    <published>2019-01-30T09:49:48.000Z</published>
-    <updated>2019-03-04T01:55:24.777Z</updated>
-    
-    <content type="html"><![CDATA[<p>###<br>面向对象：将抽象模型实例化为对象，属性和方法都通过操作对象来获取和实现。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">color,name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.color:color,</span><br><span class="line">  <span class="keyword">this</span>.name:name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">'黄色'</span>,<span class="string">'大毛'</span>);</span><br></pre></td></tr></table></figure></p><p>###</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;###&lt;br&gt;面向对象：将抽象模型实例化为对象，属性和方法都通过操作对象来获取和实现。&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span
-      
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://huangXin1538.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>css单位</title>
-    <link href="http://huangXin1538.github.io/2019/01/30/20190130-10/"/>
-    <id>http://huangXin1538.github.io/2019/01/30/20190130-10/</id>
-    <published>2019-01-30T09:49:44.000Z</published>
-    <updated>2019-03-04T01:55:21.311Z</updated>
-    
-    <content type="html"><![CDATA[<p>###<br>%:百分比<br>cm：厘米<br>mm：毫米<br>px:像素<br>in：英寸</p><p>rgb(x,x,x)    RGB 值 (比如 rgb(255,0,0))<br>rgb(x%, x%, x%)    RGB 百分比值 (比如 rgb(100%,0%,0%))</p><p>#rrggbb    十六进制数 (比如 #ff0000)</p><p>新属性<br>vw：视窗宽度的百分比（1vw 代表视窗的宽度为 1%）<br>vh：视窗高度的百分比<br>vmin：当前 vw 和 vh 中较小的一个值<br>vmax：当前 vw 和 vh 中较大的一个值</p><p>做移动页面开发时，如果使用 vw、wh 设置字体大小（比如 5vw），在竖屏和横屏状态下显示的字体大小是不一样的。<br>由于 vmin 和 vmax 是当前较小的 vw 和 vh 和当前较大的 vw 和 vh。这里就可以用到 vmin 和 vmax。使得文字大小在横竖屏下保持一致。</p><p>Android：自 4.4 版起就完美支持（2013年12月）<br>iOS：自 iOS8 版起就完美支持（2014年9月）</p><p>###</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;###&lt;br&gt;%:百分比&lt;br&gt;cm：厘米&lt;br&gt;mm：毫米&lt;br&gt;px:像素&lt;br&gt;in：英寸&lt;/p&gt;
-&lt;p&gt;rgb(x,x,x)    RGB 值 (比如 rgb(255,0,0))&lt;br&gt;rgb(x%, x%, x%)    RGB 百分比值 (比如 rgb(100%
-      
-    
-    </summary>
-    
-    
-      <category term="css" scheme="http://huangXin1538.github.io/tags/css/"/>
     
   </entry>
   
