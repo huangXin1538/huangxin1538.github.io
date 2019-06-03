@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>如何使用pixi制作&#39;打飞机&#39;小游戏 | 希染 | 愿你走过半生，归来仍是少年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js">
+    <meta name="description" content="什么是pixi.jsPixi.js使用WebGL，是一个超快的HTML5 2D渲染引擎。作为一个Javascript的2D渲染器，Pixi.js的目标是提供一个快速的、轻量级而且是兼任所有设备的2D库。提供无缝 Canvas 回退，支持主流浏览器，包括桌面和移动。 Pixi渲染器可以开发者享受到硬件加速，但并不需要了解WebGL。 如何引入pixi.js1.安装模块代码中引入：import * a">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用pixi制作&#39;打飞机&#39;小游戏">
+<meta property="og:url" content="http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/index.html">
+<meta property="og:site_name" content="希染">
+<meta property="og:description" content="什么是pixi.jsPixi.js使用WebGL，是一个超快的HTML5 2D渲染引擎。作为一个Javascript的2D渲染器，Pixi.js的目标是提供一个快速的、轻量级而且是兼任所有设备的2D库。提供无缝 Canvas 回退，支持主流浏览器，包括桌面和移动。 Pixi渲染器可以开发者享受到硬件加速，但并不需要了解WebGL。 如何引入pixi.js1.安装模块代码中引入：import * a">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-03T09:24:45.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用pixi制作&#39;打飞机&#39;小游戏">
+<meta name="twitter:description" content="什么是pixi.jsPixi.js使用WebGL，是一个超快的HTML5 2D渲染引擎。作为一个Javascript的2D渲染器，Pixi.js的目标是提供一个快速的、轻量级而且是兼任所有设备的2D库。提供无缝 Canvas 回退，支持主流浏览器，包括桌面和移动。 Pixi渲染器可以开发者享受到硬件加速，但并不需要了解WebGL。 如何引入pixi.js1.安装模块代码中引入：import * a">
+    
+        <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">希染</h5>
+          <a href="mailto:584297508@qq.com" title="584297508@qq.com" class="mail">584297508@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                时间轴
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/huangXin1538" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何使用pixi制作&#39;打飞机&#39;小游戏</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">如何使用pixi制作&#39;打飞机&#39;小游戏</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-30T02:54:37.000Z" itemprop="datePublished" class="page-time">
+  2019-05-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是pixi-js"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是pixi.js</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何引入pixi-js"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何引入pixi.js</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建pixi实例完整流程"><span class="post-toc-number">3.</span> <span class="post-toc-text">创建pixi实例完整流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-创建应用"><span class="post-toc-number">4.</span> <span class="post-toc-text">1.创建应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-加载资源"><span class="post-toc-number">5.</span> <span class="post-toc-text">2.加载资源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-创建游戏场景并插入舞台"><span class="post-toc-number">6.</span> <span class="post-toc-text">3/4.创建游戏场景并插入舞台</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-把画布插入dom"><span class="post-toc-number">7.</span> <span class="post-toc-text">5.把画布插入dom</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-创建精灵并插入场景"><span class="post-toc-number">8.</span> <span class="post-toc-text">6.创建精灵并插入场景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-更新舞台"><span class="post-toc-number">9.</span> <span class="post-toc-text">7.更新舞台</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-子弹飞机障碍物的碰撞逻辑（重点）"><span class="post-toc-number">10.</span> <span class="post-toc-text">8.子弹飞机障碍物的碰撞逻辑（重点）</span></a></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能"><span class="post-toc-number"></span> <span class="post-toc-text">如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-障碍物爆炸逻辑"><span class="post-toc-number">1.</span> <span class="post-toc-text">9.障碍物爆炸逻辑</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </li></nav>
+    </aside>
+
+
+<article id="post-如何使用pixi制作‘打飞机’小游戏" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">如何使用pixi制作'打飞机'小游戏</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-30 10:54:37" datetime="2019-05-30T02:54:37.000Z" itemprop="datePublished">2019-05-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="什么是pixi-js"><a href="#什么是pixi-js" class="headerlink" title="什么是pixi.js"></a>什么是pixi.js</h2><p>Pixi.js使用WebGL，是一个超快的HTML5 2D渲染引擎。作为一个Javascript的2D渲染器，Pixi.js的目标是提供一个快速的、轻量级而且是兼任所有设备的2D库。提供无缝 Canvas 回退，支持主流浏览器，包括桌面和移动。 Pixi渲染器可以开发者享受到硬件加速，但并不需要了解WebGL。</p>
+<h2 id="如何引入pixi-js"><a href="#如何引入pixi-js" class="headerlink" title="如何引入pixi.js"></a>如何引入pixi.js</h2><p>1.安装模块<br>代码中引入：import * as PIXI from ‘pixi.js’;<br>2.cdn</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+
+<h2 id="创建pixi实例完整流程"><a href="#创建pixi实例完整流程" class="headerlink" title="创建pixi实例完整流程"></a>创建pixi实例完整流程</h2><p>1.创建一个应用(application)(包含舞台stage)<br>2.加载资源（loader）<br>3.创建游戏场景<br>4.将场景插入舞台(addchild)<br>5.把画布插入dom（append）<br>6.创建精灵（sprite）<br>7.把精灵加入画布（addchild）<br>8.刷新舞台（ticker）<br>9.游戏结束，销毁应用（destroy）</p>
+<h2 id="1-创建应用"><a href="#1-创建应用" class="headerlink" title="1.创建应用"></a>1.创建应用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gameApp = <span class="keyword">new</span> PIXI.Application(&#123;</span><br><span class="line">    width: xxxx,</span><br><span class="line">    height: xxxx,</span><br><span class="line">    antialiasing: <span class="literal">true</span>, <span class="comment">// 抗锯齿</span></span><br><span class="line">    transparent: <span class="literal">false</span>, <span class="comment">// 背景透明</span></span><br><span class="line">    resolution: <span class="number">2</span> <span class="comment">// 渲染倍数，避免模糊</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="2-加载资源"><a href="#2-加载资源" class="headerlink" title="2.加载资源"></a>2.加载资源</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> loader = <span class="keyword">new</span> PIXI.Loader();</span><br><span class="line">loader</span><br><span class="line">    .add(<span class="string">'bg'</span>, <span class="string">'img/bg.jpg'</span>)</span><br><span class="line">    .....</span><br><span class="line">    .load(<span class="function">(<span class="params">loader, resources</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 加载完毕回调</span></span><br><span class="line">      setUp(); <span class="comment">//执行创建精灵等操作</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-创建游戏场景并插入舞台"><a href="#3-4-创建游戏场景并插入舞台" class="headerlink" title="3/4.创建游戏场景并插入舞台"></a>3/4.创建游戏场景并插入舞台</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gameScene = <span class="keyword">new</span> PIXI.Container();</span><br><span class="line">gameScene.width = xxx;</span><br><span class="line">gameScene.height = xxx;</span><br><span class="line">gameApp.stage.addchild(gameScene);</span><br></pre></td></tr></table></figure>
+<h2 id="5-把画布插入dom"><a href="#5-把画布插入dom" class="headerlink" title="5.把画布插入dom"></a>5.把画布插入dom</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'xxx'</span>).appendChild(gameApp.view);</span><br></pre></td></tr></table></figure>
+<h2 id="6-创建精灵并插入场景"><a href="#6-创建精灵并插入场景" class="headerlink" title="6.创建精灵并插入场景"></a>6.创建精灵并插入场景</h2><p>首先，为了方便的设定精灵宽高，声明两个方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWidth</span> (<span class="params">precent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> w = <span class="built_in">document</span>.body.clientWidth &gt; <span class="number">720</span> ? <span class="number">720</span> : <span class="built_in">document</span>.body.clientWidth;</span><br><span class="line">  <span class="keyword">return</span> (precent / <span class="number">50</span>) * w / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getHeight</span> (<span class="params">precent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> h = <span class="built_in">document</span>.body.clientHeight;</span><br><span class="line">  <span class="keyword">return</span> (precent / <span class="number">50</span>) * h / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1.背景<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bg = <span class="keyword">new</span> PIXI.Sprite(resources.bg.texture);</span><br><span class="line">bg.width = xxx;</span><br><span class="line">bg.height = xxx;</span><br><span class="line">bg.x = xxx;</span><br><span class="line">bg.y = xxx;</span><br><span class="line">gameScene.addchild(bg)</span><br></pre></td></tr></table></figure></p>
+<p>2.飞机<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> plane = <span class="keyword">new</span> PIXI.Sprite(resources.plane.texture);</span><br><span class="line">plane.width = xxx;</span><br><span class="line">plane.height = xxx;</span><br><span class="line">plane.x = xxx;</span><br><span class="line">plane.y = xxx;</span><br><span class="line">gameScene.addchild(plane)</span><br></pre></td></tr></table></figure></p>
+<p>给飞机添加拖动事件，让飞机跟着手指移动。<br>给飞机添加射击事件，在ticker中调用，使飞机一直发射子弹<br>3.障碍物<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obstacle  = <span class="keyword">new</span> PIXI.Sprite(resources.obstacle.texture);</span><br><span class="line">obstacle.width = xxx;</span><br><span class="line">obstacle.height = xxx;</span><br><span class="line">obstacle.x = xxx;</span><br><span class="line">obstacle.y = xxx;</span><br><span class="line">gameScene.addchild(obstacle)</span><br></pre></td></tr></table></figure></p>
+<p>这种只是最基础的做法，如果有稍微多一点的需求，例如，碰撞检测的区域，和纹理图大小不一样，就需要<br>将障碍物纹理、碰撞区域、爆炸动画，都放入一个container内，碰撞区域push进入obstacles数组，去和子弹飞机做碰撞检测<br>障碍物的飞行，使用tween.js,初始化时候，设置好起点终点，在ticker中update就可以像目的地移动</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> container = <span class="keyword">new</span> PIXI.Container();</span><br><span class="line"><span class="comment">// 图案</span></span><br><span class="line"><span class="keyword">let</span> obstacle = <span class="keyword">new</span> PIXI.Sprite(texture.obstacle.texture);</span><br><span class="line">obstacle.name = <span class="string">'obstacle'</span>;</span><br><span class="line">obstacle.width = getWidth(<span class="number">30</span>);</span><br><span class="line">obstacle.height = getWidth(<span class="number">30</span>);</span><br><span class="line">obstacle.x = <span class="number">0</span>;</span><br><span class="line">obstacle.y = <span class="number">0</span>;</span><br><span class="line">obstacle.anchor.set(<span class="number">0.5</span>, <span class="number">0.5</span>);</span><br><span class="line"><span class="comment">// 碰撞区域</span></span><br><span class="line"><span class="keyword">let</span> circle = <span class="keyword">new</span> PIXI.Sprite();</span><br><span class="line">circle.width = obstacle.width * <span class="number">0.5</span>;</span><br><span class="line">circle.height = circle.width;</span><br><span class="line">circle.name = <span class="string">'circle'</span>;</span><br><span class="line">circle.circular = <span class="literal">true</span>;</span><br><span class="line">circle.x = -circle.width*<span class="number">0.5</span>;</span><br><span class="line">circle.y = -circle.height*<span class="number">0.5</span>;</span><br><span class="line">container.addChild(circle);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文字</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="keyword">new</span> PIXI.Text(<span class="string">'哈哈'</span>, &#123;</span><br><span class="line">  fontSize: obstacle.width * <span class="number">0.13</span>,</span><br><span class="line">  fill: <span class="string">'#fff'</span></span><br><span class="line">&#125;);</span><br><span class="line">text.x = - text.width*<span class="number">0.5</span>;</span><br><span class="line">text.y = - text.height*<span class="number">0.5</span>;</span><br><span class="line">container.addChild(text);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 爆炸效果</span></span><br><span class="line"><span class="keyword">let</span> fireClip = [</span><br><span class="line">];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= <span class="number">23</span>; i++) &#123;</span><br><span class="line">  fireClip.push(texture.boom.textures[<span class="string">'boom'</span> + i + <span class="string">'.png'</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> boom = <span class="keyword">new</span> PIXI.AnimatedSprite(fireClip);</span><br><span class="line">boom.width = obstacle.width * <span class="number">2.5</span>;</span><br><span class="line">boom.height = obstacle.height * <span class="number">2.5</span>;</span><br><span class="line">boom.x = -boom.width * <span class="number">0.5</span>;</span><br><span class="line">boom.y = -boom.height * <span class="number">0.5</span>;</span><br><span class="line">boom.name = <span class="string">'boom'</span>;</span><br><span class="line">boom.loop = <span class="literal">false</span>;</span><br><span class="line">container.addChild(boom);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">container.addChild(obstacle);</span><br><span class="line">container.addChild(circle);</span><br><span class="line">container.x = getWidth(<span class="built_in">Math</span>.random()*<span class="number">100</span>);</span><br><span class="line">container.y = -obstacle.height;</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 位移设定</span></span><br><span class="line"><span class="keyword">let</span> tween = <span class="keyword">new</span> TWEEN.Tween(container)</span><br><span class="line">  .to(</span><br><span class="line">    &#123;</span><br><span class="line">      x: getWidth(<span class="built_in">Math</span>.random() * <span class="number">100</span>),</span><br><span class="line">      y: getHeight(<span class="number">100</span>) + obstacle.height,</span><br><span class="line">    &#125;,</span><br><span class="line">    obstacleTime <span class="comment">// tween持续时间</span></span><br><span class="line">  )</span><br><span class="line">  .easing(TWEEN.Easing.Linear.None)</span><br><span class="line">  .onComplete(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 到底</span></span><br><span class="line">    container.destroy();</span><br><span class="line">  &#125;);</span><br><span class="line">tween.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 旋转设定</span></span><br><span class="line"><span class="keyword">let</span> tween2 = <span class="keyword">new</span> TWEEN.Tween(obstacle)</span><br><span class="line">  .to(</span><br><span class="line">    &#123;</span><br><span class="line">      rotation: <span class="number">-20</span></span><br><span class="line">    &#125;,</span><br><span class="line">    obstacleTime <span class="comment">// tween持续时间</span></span><br><span class="line">  )</span><br><span class="line">  .easing(TWEEN.Easing.Linear.None)</span><br><span class="line">  .onComplete(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  &#125;);</span><br><span class="line">tween2.start();</span><br><span class="line"><span class="comment">// 插入场景</span></span><br><span class="line">container.tween = tween;</span><br><span class="line">obstacles.push(circle);</span><br><span class="line">tweens.push(tween);</span><br><span class="line">gameScene.addChild(container);</span><br></pre></td></tr></table></figure>
+<h2 id="7-更新舞台"><a href="#7-更新舞台" class="headerlink" title="7.更新舞台"></a>7.更新舞台</h2><p>创建完游戏内所有元素后，开启pixi内置定时器ticker<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.ticker.add(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gameLoop();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在ticker中更新需要调用的事件，来实现游戏的动态效果<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gameLoop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 生成子弹</span></span><br><span class="line">  plane.shut(gameScene, bullets);</span><br><span class="line">  <span class="comment">// 生成障碍物</span></span><br><span class="line">  createobstacle(gameScene, texture, obstacles, TWEEN, tweens);</span><br><span class="line">  <span class="comment">// 子弹逻辑处理</span></span><br><span class="line">  bulletsEvents();</span><br><span class="line">  <span class="comment">// 障碍物逻辑处理</span></span><br><span class="line">  obstaclesEvents();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="8-子弹飞机障碍物的碰撞逻辑（重点）"><a href="#8-子弹飞机障碍物的碰撞逻辑（重点）" class="headerlink" title="8.子弹飞机障碍物的碰撞逻辑（重点）"></a>8.子弹飞机障碍物的碰撞逻辑（重点）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bulletsEvents</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bullets.length;)&#123;</span><br><span class="line">    <span class="keyword">let</span> hit = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> o = <span class="number">0</span>; o &lt; obstacles.length; ) &#123;</span><br><span class="line">        <span class="comment">// 子弹与障碍物碰撞检测</span></span><br><span class="line">      <span class="keyword">if</span>(hitTest(obstacles[o], bullets[i])) &#123;</span><br><span class="line">        hit = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 移除障碍物</span></span><br><span class="line">        obstaclesBoom(o)</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(hitTest(obstacles[o], plane))&#123;</span><br><span class="line">        <span class="comment">// 飞机与障碍物碰撞检测</span></span><br><span class="line">        <span class="keyword">let</span> _obstacle = obstacles.splice(o,<span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">        _obstacle.destroy();</span><br><span class="line">        gameOver();</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        o++</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 根据碰撞状态做处理</span></span><br><span class="line">    <span class="keyword">if</span>(hit)&#123;</span><br><span class="line">      <span class="comment">// 如果碰撞了</span></span><br><span class="line">      <span class="comment">// 移除当前子弹</span></span><br><span class="line">      <span class="keyword">let</span> _bullet = bullets.splice(i,<span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">      _bullet.destroy();</span><br><span class="line">      <span class="comment">// 加分</span></span><br><span class="line">      score ++;</span><br><span class="line">      scorePanel.text = <span class="string">'得分：'</span> + score;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">// 如果子弹飞出屏幕，则移除；如果没有，Y轴位移</span></span><br><span class="line">      <span class="keyword">if</span>(bullets[i].y &lt; -bullets[i].height)&#123;</span><br><span class="line">        <span class="keyword">let</span> _bullet = bullets.splice(i,<span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">        _bullet.destroy();</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        bullets[i].y -= <span class="number">10</span>;</span><br><span class="line">        i++</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先遍历子弹池，内部遍历所有障碍物，通过hitTest做碰撞检测<br>如果子弹和障碍物碰撞，子弹消失，障碍物消失/爆炸，得分+1；<br>如果飞机和障碍物碰撞，障碍物消失/爆炸，游戏结束<br>如果都没有，检测下一个子弹</p>
+<h1 id="如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能"><a href="#如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能" class="headerlink" title="如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能"></a>如果子弹自下而上，飞出屏幕，则子弹移除，否则影响性能</h1><p>碰撞检测代码，bump通过cdn引入<br>hitTestCircleRectangle只能用于圆形和矩形的碰撞，更多方式查看PIXI官方文档<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子弹词条碰撞</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> PIXI <span class="keyword">from</span> <span class="string">'pixi.js'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">hitTest</span> (<span class="params">r1, r2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="keyword">new</span> Bump(PIXI);</span><br><span class="line">  <span class="keyword">if</span> (b.hitTestCircleRectangle(r1, r2, <span class="literal">true</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="9-障碍物爆炸逻辑"><a href="#9-障碍物爆炸逻辑" class="headerlink" title="9.障碍物爆炸逻辑"></a>9.障碍物爆炸逻辑</h2><p>碰撞之后，根据parent属性，找到container，进而找到内部的爆炸动画，执行play()方法；<br>爆炸的同时，使纹理隐藏，形成视觉上的碰撞爆炸效果</p>
+<p>部分代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">obstaclesBoom</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> container = obstacles[o].parent;</span><br><span class="line">  <span class="keyword">let</span> _obstacle = obstacles.splice(o,<span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">  _obstacle.destroy();</span><br><span class="line">  container.children[<span class="number">1</span>].play();</span><br><span class="line">  container.children[<span class="number">0</span>].visible = <span class="literal">false</span>;</span><br><span class="line">  container.children[<span class="number">2</span>].visible = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>只是随便讲一下做法的逻辑，具体代码已上传github，地址：<a href="https://github.com/huangXin1538/pixi-aircrift-wars" target="_blank" rel="noopener">https://github.com/huangXin1538/pixi-aircrift-wars</a><br>就酱~</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-06-03T09:24:45.291Z" itemprop="dateUpdated">2019-06-03 17:24:45</time>
+</span><br>
+
+
+        
+        本文结束
+        
+    </div>
+    
+    <footer>
+        <a href="http://huangXin1538.github.io">
+            <img src="/img/avatar.jpg" alt="希染">
+            希染
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&title=《如何使用pixi制作'打飞机'小游戏》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&title=《如何使用pixi制作'打飞机'小游戏》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何使用pixi制作'打飞机'小游戏》 — 希染&url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/28/vue双向绑定原理/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">vue双向绑定原理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <!-- <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span> -->
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <!-- <span>footer.license</span> -->
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>希染 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&title=《如何使用pixi制作'打飞机'小游戏》 — 希染&pic=http://huangXin1538.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&title=《如何使用pixi制作'打飞机'小游戏》 — 希染&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何使用pixi制作'打飞机'小游戏》 — 希染&url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/&via=http://huangXin1538.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADH0lEQVR42u3aS47iQBAFwL7/pZltSwPMe5lGwjXhFQLjqigWSX5+fuLr8evKP33E16v7f7///pk/n7iwsbGxb8JuN/T3VpLnzw4xWTc5lCdrYWNjYx/Hfr/d90cw28TmcN/vLTl6bGxsbOw8jLVHlqco2NjY2Ngz9myLbUKSg7GxsbGx8yQhelyw3bbklO/tI7U0bGxs7K9ntyX+b379kf42NjY29hezH+XVFpJmyUae9gwV2NjY2AexZ4wcdlXCkI/s5PvHxsbGPom9/8feFonapm/Cu7iQhI2NjX0rdtumTRKVTToxC5/titjY2NhnsN+Hn1nQuiog5ewLci9sbGzsm7PzL+9LOW1xKi82FbvFxsbGPpTdtlH3QWh2rHkK9HJv2NjY2IeyNy3VfQnpMbqGDWlsbGzsg9htOWmWisyOpg2QeZkMGxsb+1T2htQGv1noyoPo8KfCxsbGvi1786c/CU75+7NVVuEKGxsb+wj2LDHYB5h9urIf+sTGxsY+g50nCW3b9apUp21IR2thY2NjH8FuN5q3UTfjlfnrdhVsbGzsU9mbR8xawpsnt22AIuvCxsbGvi07H4XJSzZXDf20GUQU8LCxsbGPY39u1KZOEsohnuFBY2NjYx/EbtuuV5X78yLRVaNCdVcEGxsb+4bsvGW7Gehpj2P2fvRDYmNjYx/EzpdPxnfyJvEn7qmDGTY2NvbN2XlBJz+m/ehPnq7kT35SS8PGxsY+lH1Vq7UtM83awMOkBRsbG/sgdhtU2vAzaw9/LrwNYyk2Njb2Tdjvg1A01FimH5vmcRv8nqyOjY2NfSg7b5rmASm5c5Za5Lt6mYpgY2NjH8SeDb4ksFn7ocXX92NjY2Mfwd6XePJCTztk2YbVPBxiY2Njn8Rug8Fs6/lwzyxdyQte9UFgY2Nj34TdLjZLIfKkpR3fmYVJbGxs7PPYm2bqrOg/C5abItQ/+tvY2NjY/zG7bbLmCUMelpJnYmNjY2Nv0pL8W8mnsxQFGxsb+2z2prmbhJb8u8lx79vD2NjY2Cex2wJNO3yZj9e0d24OFBsbG/sI9h/BVM5K+nn6MwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

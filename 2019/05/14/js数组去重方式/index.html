@@ -21,17 +21,17 @@
     
     
     <meta name="keywords" content>
-    <meta name="description" content="1.es6中Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象；12345678910111213141516171819202122//展开let a = [1,2,3];let b = [0, ...a, 4]; // [0,1,2,3,4]//剩余1：  let a = [1,2,3];  let [b, ...c] = a;  // b = 1; c = [2,3">
+    <meta name="description" content="Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象； …使用1234//展开let a = [1,2,3];console.log(...a);输出： 1 2 3 Set使用1234let a = [1,1,1,1,2,2,2]let b = new Set(a)输出b: Set&amp;#123;1,2&amp;#125; 结合两者123var a = [1,2,2,2,3];a =">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js数组去重方式">
 <meta property="og:url" content="http://huangXin1538.github.io/2019/05/14/js数组去重方式/index.html">
 <meta property="og:site_name" content="希染">
-<meta property="og:description" content="1.es6中Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象；12345678910111213141516171819202122//展开let a = [1,2,3];let b = [0, ...a, 4]; // [0,1,2,3,4]//剩余1：  let a = [1,2,3];  let [b, ...c] = a;  // b = 1; c = [2,3">
+<meta property="og:description" content="Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象； …使用1234//展开let a = [1,2,3];console.log(...a);输出： 1 2 3 Set使用1234let a = [1,1,1,1,2,2,2]let b = new Set(a)输出b: Set&amp;#123;1,2&amp;#125; 结合两者123var a = [1,2,2,2,3];a =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-14T09:59:25.773Z">
+<meta property="og:updated_time" content="2019-05-24T07:32:52.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js数组去重方式">
-<meta name="twitter:description" content="1.es6中Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象；12345678910111213141516171819202122//展开let a = [1,2,3];let b = [0, ...a, 4]; // [0,1,2,3,4]//剩余1：  let a = [1,2,3];  let [b, ...c] = a;  // b = 1; c = [2,3">
+<meta name="twitter:description" content="Set：数据结构，类似数组，成员唯一…：（展开/剩余）运算符，展开数组和对象； …使用1234//展开let a = [1,2,3];console.log(...a);输出： 1 2 3 Set使用1234let a = [1,1,1,1,2,2,2]let b = new Set(a)输出b: Set&amp;#123;1,2&amp;#125; 结合两者123var a = [1,2,2,2,3];a =">
     
         <link rel="alternate" type="application/atom+xml" title="希染" href="/atom.xml">
     
@@ -111,7 +111,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -147,13 +147,6 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-es6中"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.es6中</span></a></li></ol>
-        </nav>
-    </aside>
-
 
 <article id="post-js数组去重方式" class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -173,8 +166,11 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="1-es6中"><a href="#1-es6中" class="headerlink" title="1.es6中"></a>1.es6中</h3><p>Set：数据结构，类似数组，成员唯一<br>…：（展开/剩余）运算符，展开数组和对象；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">0</span>, ...a, <span class="number">4</span>]; <span class="comment">// [0,1,2,3,4]</span></span><br><span class="line"><span class="comment">//剩余</span></span><br><span class="line"><span class="number">1</span>：</span><br><span class="line">  <span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">let</span> [b, ...c] = a;</span><br><span class="line">  <span class="comment">// b = 1; c = [2,3]</span></span><br><span class="line"><span class="number">2</span>：</span><br><span class="line">  <span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">let</span> [b, ...[c,d,e]] = a;</span><br><span class="line">  b; <span class="comment">// 1</span></span><br><span class="line">  c; <span class="comment">// 2</span></span><br><span class="line">  d; <span class="comment">// 3</span></span><br><span class="line">  e; <span class="comment">// undefined</span></span><br><span class="line"><span class="number">3</span>：</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">a, ...rest</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(rest); <span class="comment">// [2,3]</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  test(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
-<p>数组去重<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a = [...new <span class="built_in">Set</span>(a)];</span><br><span class="line"><span class="comment">// a = [1,2];</span></span><br></pre></td></tr></table></figure></p>
+            <p>Set：数据结构，类似数组，成员唯一<br>…：（展开/剩余）运算符，展开数组和对象；</p>
+<p>…使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//展开</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(...a);</span><br><span class="line">输出： <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>Set使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = [1,1,1,1,2,2,2]</span><br><span class="line">let b = new Set(a)</span><br><span class="line"></span><br><span class="line">输出b: Set&#123;1,2&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结合两者<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a = [...new <span class="built_in">Set</span>(a)];</span><br><span class="line">输出 a = [<span class="number">1</span>,<span class="number">2</span>];</span><br></pre></td></tr></table></figure></p>
+<p>首先 new Set(a) 为 Set{1,2}<br>然后…将 new Set(a)展开，为: 1 2<br>最后，放入a中，实现去重</p>
 
         </div>
 
@@ -183,7 +179,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-05-14T09:59:25.773Z" itemprop="dateUpdated">2019-05-14 17:59:25</time>
+    Last updated: <time datetime="2019-05-24T07:32:52.609Z" itemprop="dateUpdated">2019-05-24 15:32:52</time>
 </span><br>
 
 
@@ -353,7 +349,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <!-- <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span> -->
+            <!-- <span>footer.license</span> -->
         </p>
     </div>
     <div class="bottom">

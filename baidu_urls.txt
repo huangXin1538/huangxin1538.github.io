@@ -1,3 +1,6 @@
+http://huangXin1538.github.io/2019/05/30/如何使用pixi制作‘打飞机’小游戏/
+http://huangXin1538.github.io/2019/05/28/vue双向绑定原理/
+http://huangXin1538.github.io/2019/05/27/手写双向绑定/
 http://huangXin1538.github.io/2019/05/21/遇到过的问题/
 http://huangXin1538.github.io/2019/05/14/js数组去重方式/
 http://huangXin1538.github.io/2019/04/18/es6解构赋值/
